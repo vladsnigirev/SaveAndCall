@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B54F4C31043AA3E8E589939 /* libPods-SaveAndCall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC169D2AEB30E92DBD455DD /* libPods-SaveAndCall.a */; };
+		4C4B991D201D1A4500245923 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B991C201D1A4500245923 /* AppDelegate.m */; };
+		4C4B9926201D1A4500245923 /* SaveAndCall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B9924201D1A4500245923 /* SaveAndCall.xcdatamodeld */; };
+		4C4B9928201D1A4500245923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B9927201D1A4500245923 /* Assets.xcassets */; };
+		4C4B992B201D1A4500245923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B9929201D1A4500245923 /* LaunchScreen.storyboard */; };
+		4C4B992E201D1A4500245923 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B992D201D1A4500245923 /* main.m */; };
+		4C4B9938201D1A4500245923 /* SaveAndCallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B9937201D1A4500245923 /* SaveAndCallTests.m */; };
+		4C4B9945201D1AB600245923 /* SVEVkAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B9944201D1AB600245923 /* SVEVkAuthorizationController.m */; };
+		4C6E71C6201DE3A200DDBAEF /* SVEVkAuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71C5201DE3A200DDBAEF /* SVEVkAuthorizationService.m */; };
+		4C6E71D3201E556D00DDBAEF /* SVETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71D2201E556D00DDBAEF /* SVETabBarController.m */; };
+		4C6E71E1201F1A6000DDBAEF /* SVEVkFriendsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71E0201F1A6000DDBAEF /* SVEVkFriendsNavigationController.m */; };
+		4C6E71E4201F1A8000DDBAEF /* SVEVkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71E3201F1A8000DDBAEF /* SVEVkTableViewController.m */; };
+		4C6E71E7201F241D00DDBAEF /* SVEContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71E6201F241D00DDBAEF /* SVEContactsNavigationController.m */; };
+		4C6E71ED201F257400DDBAEF /* SVEContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E71EC201F257400DDBAEF /* SVEContactsTableViewController.m */; };
+		4C7BF69E202CCC6100BF4924 /* NSString+SVENumberEraser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7BF69D202CCC6100BF4924 /* NSString+SVENumberEraser.m */; };
+		4CA06E0E202B27C2009049BF /* SVESharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA06E0D202B27C2009049BF /* SVESharedData.m */; };
+		4CBF44A62025E48600C52A18 /* SVERouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44A52025E48600C52A18 /* SVERouter.m */; };
+		4CBF44A92025E5BE00C52A18 /* SVEUserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */; };
+		4CBF44AC202721E500C52A18 /* SVEInterfaceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */; };
+		4CF62C8C20209008001552D1 /* SVENetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C8B20209008001552D1 /* SVENetworkService.m */; };
+		4CF62C942020A5B5001552D1 /* SVEFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C932020A5B5001552D1 /* SVEFriendModel.m */; };
+		4CF62C9620231A98001552D1 /* SVEVkTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9520231A98001552D1 /* SVEVkTableCell.m */; };
+		4CF62C9920231AE0001552D1 /* SVEContactsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9820231AE0001552D1 /* SVEContactsTableCell.m */; };
+		4CF62C9C20232398001552D1 /* SVEContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9B20232398001552D1 /* SVEContactsService.m */; };
+		4CF62CA02023466C001552D1 /* SVEParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9F2023466C001552D1 /* SVEParseHelper.m */; };
+		4CF62CA32023480E001552D1 /* SVEContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62CA22023480E001552D1 /* SVEContactModel.m */; };
+		4CF62CB120247F79001552D1 /* SVEChangePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */; };
+		4CF62CB42024DD95001552D1 /* SVEChangeContactPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62CB32024DD95001552D1 /* SVEChangeContactPhotoController.m */; };
+		D914DDD1522EAD8873C8AABE /* libPods-SaveAndCallTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA41F876C9B2AEF119B220AE /* libPods-SaveAndCallTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C4B9934201D1A4500245923 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C4B9910201D1A4500245923 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C4B9917201D1A4500245923;
+			remoteInfo = SaveAndCall;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		022DEEE81FD702E1933D6EF6 /* Pods-SaveAndCallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveAndCallTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaveAndCallTests/Pods-SaveAndCallTests.release.xcconfig"; sourceTree = "<group>"; };
+		44DA0A84C155A177F59429B3 /* Pods-SaveAndCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveAndCall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaveAndCall/Pods-SaveAndCall.debug.xcconfig"; sourceTree = "<group>"; };
+		4C4B9918201D1A4500245923 /* SaveAndCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveAndCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4B991B201D1A4500245923 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4C4B991C201D1A4500245923 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4C4B9925201D1A4500245923 /* SaveAndCall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaveAndCall.xcdatamodel; sourceTree = "<group>"; };
+		4C4B9927201D1A4500245923 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C4B992A201D1A4500245923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4C4B992C201D1A4500245923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C4B992D201D1A4500245923 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C4B9933201D1A4500245923 /* SaveAndCallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaveAndCallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4B9937201D1A4500245923 /* SaveAndCallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveAndCallTests.m; sourceTree = "<group>"; };
+		4C4B9939201D1A4500245923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C4B9943201D1AB600245923 /* SVEVkAuthorizationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEVkAuthorizationController.h; sourceTree = "<group>"; };
+		4C4B9944201D1AB600245923 /* SVEVkAuthorizationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEVkAuthorizationController.m; sourceTree = "<group>"; };
+		4C6E71C4201DE3A200DDBAEF /* SVEVkAuthorizationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEVkAuthorizationService.h; sourceTree = "<group>"; };
+		4C6E71C5201DE3A200DDBAEF /* SVEVkAuthorizationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEVkAuthorizationService.m; sourceTree = "<group>"; };
+		4C6E71D1201E556D00DDBAEF /* SVETabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVETabBarController.h; sourceTree = "<group>"; };
+		4C6E71D2201E556D00DDBAEF /* SVETabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVETabBarController.m; sourceTree = "<group>"; };
+		4C6E71D9201E59F800DDBAEF /* SVEVkTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEVkTableCell.h; sourceTree = "<group>"; };
+		4C6E71DF201F1A6000DDBAEF /* SVEVkFriendsNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEVkFriendsNavigationController.h; sourceTree = "<group>"; };
+		4C6E71E0201F1A6000DDBAEF /* SVEVkFriendsNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEVkFriendsNavigationController.m; sourceTree = "<group>"; };
+		4C6E71E2201F1A8000DDBAEF /* SVEVkTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEVkTableViewController.h; sourceTree = "<group>"; };
+		4C6E71E3201F1A8000DDBAEF /* SVEVkTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEVkTableViewController.m; sourceTree = "<group>"; };
+		4C6E71E5201F241D00DDBAEF /* SVEContactsNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactsNavigationController.h; sourceTree = "<group>"; };
+		4C6E71E6201F241D00DDBAEF /* SVEContactsNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactsNavigationController.m; sourceTree = "<group>"; };
+		4C6E71EB201F257400DDBAEF /* SVEContactsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactsTableViewController.h; sourceTree = "<group>"; };
+		4C6E71EC201F257400DDBAEF /* SVEContactsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactsTableViewController.m; sourceTree = "<group>"; };
+		4C7BF69C202CCC6100BF4924 /* NSString+SVENumberEraser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SVENumberEraser.h"; sourceTree = "<group>"; };
+		4C7BF69D202CCC6100BF4924 /* NSString+SVENumberEraser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SVENumberEraser.m"; sourceTree = "<group>"; };
+		4CA06E0C202B27C2009049BF /* SVESharedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVESharedData.h; sourceTree = "<group>"; };
+		4CA06E0D202B27C2009049BF /* SVESharedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVESharedData.m; sourceTree = "<group>"; };
+		4CA06E0F202B2818009049BF /* SVESharedDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVESharedDataProtocol.h; sourceTree = "<group>"; };
+		4CBF44A42025E48600C52A18 /* SVERouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVERouter.h; sourceTree = "<group>"; };
+		4CBF44A52025E48600C52A18 /* SVERouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVERouter.m; sourceTree = "<group>"; };
+		4CBF44A72025E5BE00C52A18 /* SVEUserDefaultsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEUserDefaultsHelper.h; sourceTree = "<group>"; };
+		4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEUserDefaultsHelper.m; sourceTree = "<group>"; };
+		4CBF44AA202721E500C52A18 /* SVEInterfaceBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEInterfaceBuilder.h; sourceTree = "<group>"; };
+		4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEInterfaceBuilder.m; sourceTree = "<group>"; };
+		4CF62C8A20209008001552D1 /* SVENetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVENetworkService.h; sourceTree = "<group>"; };
+		4CF62C8B20209008001552D1 /* SVENetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVENetworkService.m; sourceTree = "<group>"; };
+		4CF62C8E20209FD7001552D1 /* SVENetworkServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVENetworkServiceProtocol.h; sourceTree = "<group>"; };
+		4CF62C922020A5B5001552D1 /* SVEFriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEFriendModel.h; sourceTree = "<group>"; };
+		4CF62C932020A5B5001552D1 /* SVEFriendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEFriendModel.m; sourceTree = "<group>"; };
+		4CF62C9520231A98001552D1 /* SVEVkTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEVkTableCell.m; sourceTree = "<group>"; };
+		4CF62C9720231AE0001552D1 /* SVEContactsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactsTableCell.h; sourceTree = "<group>"; };
+		4CF62C9820231AE0001552D1 /* SVEContactsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactsTableCell.m; sourceTree = "<group>"; };
+		4CF62C9A20232398001552D1 /* SVEContactsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactsService.h; sourceTree = "<group>"; };
+		4CF62C9B20232398001552D1 /* SVEContactsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactsService.m; sourceTree = "<group>"; };
+		4CF62C9D202323C8001552D1 /* SVEContactsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactsProtocol.h; sourceTree = "<group>"; };
+		4CF62C9E2023466C001552D1 /* SVEParseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEParseHelper.h; sourceTree = "<group>"; };
+		4CF62C9F2023466C001552D1 /* SVEParseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEParseHelper.m; sourceTree = "<group>"; };
+		4CF62CA12023480E001552D1 /* SVEContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactModel.h; sourceTree = "<group>"; };
+		4CF62CA22023480E001552D1 /* SVEContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactModel.m; sourceTree = "<group>"; };
+		4CF62CAF20247F79001552D1 /* SVEChangePhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEChangePhotoView.h; sourceTree = "<group>"; };
+		4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEChangePhotoView.m; sourceTree = "<group>"; };
+		4CF62CB22024DD95001552D1 /* SVEChangeContactPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEChangeContactPhotoController.h; sourceTree = "<group>"; };
+		4CF62CB32024DD95001552D1 /* SVEChangeContactPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEChangeContactPhotoController.m; sourceTree = "<group>"; };
+		8DC169D2AEB30E92DBD455DD /* libPods-SaveAndCall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaveAndCall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FBF2CC85D761F3495F9894 /* Pods-SaveAndCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveAndCall.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaveAndCall/Pods-SaveAndCall.release.xcconfig"; sourceTree = "<group>"; };
+		E2C56B72CF48471DD4033044 /* Pods-SaveAndCallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveAndCallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaveAndCallTests/Pods-SaveAndCallTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA41F876C9B2AEF119B220AE /* libPods-SaveAndCallTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaveAndCallTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C4B9915201D1A4500245923 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B54F4C31043AA3E8E589939 /* libPods-SaveAndCall.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4B9930201D1A4500245923 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D914DDD1522EAD8873C8AABE /* libPods-SaveAndCallTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E4A15392B9EE5791057583A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DC169D2AEB30E92DBD455DD /* libPods-SaveAndCall.a */,
+				FA41F876C9B2AEF119B220AE /* libPods-SaveAndCallTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C4B990F201D1A4500245923 = {
+			isa = PBXGroup;
+			children = (
+				4C4B991A201D1A4500245923 /* SaveAndCall */,
+				4C4B9936201D1A4500245923 /* SaveAndCallTests */,
+				4C4B9919201D1A4500245923 /* Products */,
+				A9D779F6F31DC43A25B5E727 /* Pods */,
+				2E4A15392B9EE5791057583A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4C4B9919201D1A4500245923 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C4B9918201D1A4500245923 /* SaveAndCall.app */,
+				4C4B9933201D1A4500245923 /* SaveAndCallTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C4B991A201D1A4500245923 /* SaveAndCall */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62CA4202367C6001552D1 /* Helpers */,
+				4CF62C912020A59D001552D1 /* Models */,
+				4CF62C8D20209F86001552D1 /* Protocols */,
+				4C6E71D8201E599800DDBAEF /* Cells */,
+				4C6E71D4201E562100DDBAEF /* Views */,
+				4C6E71C3201DE35E00DDBAEF /* Services */,
+				4C4B9942201D1A9100245923 /* ViewControllers */,
+				4C7BF69F202CCD9400BF4924 /* Categories */,
+				4C4B991B201D1A4500245923 /* AppDelegate.h */,
+				4C4B991C201D1A4500245923 /* AppDelegate.m */,
+				4C4B9927201D1A4500245923 /* Assets.xcassets */,
+				4C4B9929201D1A4500245923 /* LaunchScreen.storyboard */,
+				4C4B992C201D1A4500245923 /* Info.plist */,
+				4C4B992D201D1A4500245923 /* main.m */,
+				4C4B9924201D1A4500245923 /* SaveAndCall.xcdatamodeld */,
+			);
+			path = SaveAndCall;
+			sourceTree = "<group>";
+		};
+		4C4B9936201D1A4500245923 /* SaveAndCallTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C4B9937201D1A4500245923 /* SaveAndCallTests.m */,
+				4C4B9939201D1A4500245923 /* Info.plist */,
+			);
+			path = SaveAndCallTests;
+			sourceTree = "<group>";
+		};
+		4C4B9942201D1A9100245923 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C4B9943201D1AB600245923 /* SVEVkAuthorizationController.h */,
+				4C4B9944201D1AB600245923 /* SVEVkAuthorizationController.m */,
+				4C6E71D1201E556D00DDBAEF /* SVETabBarController.h */,
+				4C6E71D2201E556D00DDBAEF /* SVETabBarController.m */,
+				4C6E71DF201F1A6000DDBAEF /* SVEVkFriendsNavigationController.h */,
+				4C6E71E0201F1A6000DDBAEF /* SVEVkFriendsNavigationController.m */,
+				4C6E71E2201F1A8000DDBAEF /* SVEVkTableViewController.h */,
+				4C6E71E3201F1A8000DDBAEF /* SVEVkTableViewController.m */,
+				4C6E71E5201F241D00DDBAEF /* SVEContactsNavigationController.h */,
+				4C6E71E6201F241D00DDBAEF /* SVEContactsNavigationController.m */,
+				4C6E71EB201F257400DDBAEF /* SVEContactsTableViewController.h */,
+				4C6E71EC201F257400DDBAEF /* SVEContactsTableViewController.m */,
+				4CF62CB22024DD95001552D1 /* SVEChangeContactPhotoController.h */,
+				4CF62CB32024DD95001552D1 /* SVEChangeContactPhotoController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4C6E71C3201DE35E00DDBAEF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4C6E71C4201DE3A200DDBAEF /* SVEVkAuthorizationService.h */,
+				4C6E71C5201DE3A200DDBAEF /* SVEVkAuthorizationService.m */,
+				4CF62C8A20209008001552D1 /* SVENetworkService.h */,
+				4CF62C8B20209008001552D1 /* SVENetworkService.m */,
+				4CF62C9A20232398001552D1 /* SVEContactsService.h */,
+				4CF62C9B20232398001552D1 /* SVEContactsService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4C6E71D4201E562100DDBAEF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62CAF20247F79001552D1 /* SVEChangePhotoView.h */,
+				4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4C6E71D8201E599800DDBAEF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4C6E71D9201E59F800DDBAEF /* SVEVkTableCell.h */,
+				4CF62C9520231A98001552D1 /* SVEVkTableCell.m */,
+				4CF62C9720231AE0001552D1 /* SVEContactsTableCell.h */,
+				4CF62C9820231AE0001552D1 /* SVEContactsTableCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4C7BF69F202CCD9400BF4924 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4C7BF69C202CCC6100BF4924 /* NSString+SVENumberEraser.h */,
+				4C7BF69D202CCC6100BF4924 /* NSString+SVENumberEraser.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4CF62C8D20209F86001552D1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62C8E20209FD7001552D1 /* SVENetworkServiceProtocol.h */,
+				4CF62C9D202323C8001552D1 /* SVEContactsProtocol.h */,
+				4CA06E0F202B2818009049BF /* SVESharedDataProtocol.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4CF62C912020A59D001552D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62C922020A5B5001552D1 /* SVEFriendModel.h */,
+				4CF62C932020A5B5001552D1 /* SVEFriendModel.m */,
+				4CF62CA12023480E001552D1 /* SVEContactModel.h */,
+				4CF62CA22023480E001552D1 /* SVEContactModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4CF62CA4202367C6001552D1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62C9E2023466C001552D1 /* SVEParseHelper.h */,
+				4CF62C9F2023466C001552D1 /* SVEParseHelper.m */,
+				4CBF44A42025E48600C52A18 /* SVERouter.h */,
+				4CBF44A52025E48600C52A18 /* SVERouter.m */,
+				4CBF44A72025E5BE00C52A18 /* SVEUserDefaultsHelper.h */,
+				4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */,
+				4CBF44AA202721E500C52A18 /* SVEInterfaceBuilder.h */,
+				4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */,
+				4CA06E0C202B27C2009049BF /* SVESharedData.h */,
+				4CA06E0D202B27C2009049BF /* SVESharedData.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A9D779F6F31DC43A25B5E727 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44DA0A84C155A177F59429B3 /* Pods-SaveAndCall.debug.xcconfig */,
+				D7FBF2CC85D761F3495F9894 /* Pods-SaveAndCall.release.xcconfig */,
+				E2C56B72CF48471DD4033044 /* Pods-SaveAndCallTests.debug.xcconfig */,
+				022DEEE81FD702E1933D6EF6 /* Pods-SaveAndCallTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C4B9917201D1A4500245923 /* SaveAndCall */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C4B993C201D1A4500245923 /* Build configuration list for PBXNativeTarget "SaveAndCall" */;
+			buildPhases = (
+				99DC39D7BAAD7AA3E51AF762 /* [CP] Check Pods Manifest.lock */,
+				4C4B9914201D1A4500245923 /* Sources */,
+				4C4B9915201D1A4500245923 /* Frameworks */,
+				4C4B9916201D1A4500245923 /* Resources */,
+				83085313632CC64C2BFFEDC2 /* [CP] Embed Pods Frameworks */,
+				11AB7C81E70756C14E6376BE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SaveAndCall;
+			productName = SaveAndCall;
+			productReference = 4C4B9918201D1A4500245923 /* SaveAndCall.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4C4B9932201D1A4500245923 /* SaveAndCallTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C4B993F201D1A4500245923 /* Build configuration list for PBXNativeTarget "SaveAndCallTests" */;
+			buildPhases = (
+				D5B596CAB64DD6D9D56656A5 /* [CP] Check Pods Manifest.lock */,
+				4C4B992F201D1A4500245923 /* Sources */,
+				4C4B9930201D1A4500245923 /* Frameworks */,
+				4C4B9931201D1A4500245923 /* Resources */,
+				866CAC955FEF60B4AF2B0F72 /* [CP] Embed Pods Frameworks */,
+				E102FE8BCD19F4314EA1EFEC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C4B9935201D1A4500245923 /* PBXTargetDependency */,
+			);
+			name = SaveAndCallTests;
+			productName = SaveAndCallTests;
+			productReference = 4C4B9933201D1A4500245923 /* SaveAndCallTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C4B9910201D1A4500245923 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Vlad Snigiryov";
+				TargetAttributes = {
+					4C4B9917201D1A4500245923 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					4C4B9932201D1A4500245923 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4C4B9917201D1A4500245923;
+					};
+				};
+			};
+			buildConfigurationList = 4C4B9913201D1A4500245923 /* Build configuration list for PBXProject "SaveAndCall" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4C4B990F201D1A4500245923;
+			productRefGroup = 4C4B9919201D1A4500245923 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C4B9917201D1A4500245923 /* SaveAndCall */,
+				4C4B9932201D1A4500245923 /* SaveAndCallTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C4B9916201D1A4500245923 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C4B992B201D1A4500245923 /* LaunchScreen.storyboard in Resources */,
+				4C4B9928201D1A4500245923 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4B9931201D1A4500245923 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11AB7C81E70756C14E6376BE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveAndCall/Pods-SaveAndCall-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83085313632CC64C2BFFEDC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveAndCall/Pods-SaveAndCall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		866CAC955FEF60B4AF2B0F72 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveAndCallTests/Pods-SaveAndCallTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99DC39D7BAAD7AA3E51AF762 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SaveAndCall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5B596CAB64DD6D9D56656A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SaveAndCallTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E102FE8BCD19F4314EA1EFEC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveAndCallTests/Pods-SaveAndCallTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C4B9914201D1A4500245923 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CBF44AC202721E500C52A18 /* SVEInterfaceBuilder.m in Sources */,
+				4C7BF69E202CCC6100BF4924 /* NSString+SVENumberEraser.m in Sources */,
+				4CF62CA32023480E001552D1 /* SVEContactModel.m in Sources */,
+				4C6E71ED201F257400DDBAEF /* SVEContactsTableViewController.m in Sources */,
+				4C4B9926201D1A4500245923 /* SaveAndCall.xcdatamodeld in Sources */,
+				4C4B9945201D1AB600245923 /* SVEVkAuthorizationController.m in Sources */,
+				4C6E71E1201F1A6000DDBAEF /* SVEVkFriendsNavigationController.m in Sources */,
+				4C6E71D3201E556D00DDBAEF /* SVETabBarController.m in Sources */,
+				4CF62C942020A5B5001552D1 /* SVEFriendModel.m in Sources */,
+				4CF62CB42024DD95001552D1 /* SVEChangeContactPhotoController.m in Sources */,
+				4CF62CA02023466C001552D1 /* SVEParseHelper.m in Sources */,
+				4CBF44A62025E48600C52A18 /* SVERouter.m in Sources */,
+				4C4B992E201D1A4500245923 /* main.m in Sources */,
+				4C6E71E4201F1A8000DDBAEF /* SVEVkTableViewController.m in Sources */,
+				4CF62CB120247F79001552D1 /* SVEChangePhotoView.m in Sources */,
+				4C6E71E7201F241D00DDBAEF /* SVEContactsNavigationController.m in Sources */,
+				4CA06E0E202B27C2009049BF /* SVESharedData.m in Sources */,
+				4CF62C9620231A98001552D1 /* SVEVkTableCell.m in Sources */,
+				4CF62C8C20209008001552D1 /* SVENetworkService.m in Sources */,
+				4CF62C9C20232398001552D1 /* SVEContactsService.m in Sources */,
+				4C6E71C6201DE3A200DDBAEF /* SVEVkAuthorizationService.m in Sources */,
+				4CF62C9920231AE0001552D1 /* SVEContactsTableCell.m in Sources */,
+				4CBF44A92025E5BE00C52A18 /* SVEUserDefaultsHelper.m in Sources */,
+				4C4B991D201D1A4500245923 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4B992F201D1A4500245923 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C4B9938201D1A4500245923 /* SaveAndCallTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C4B9935201D1A4500245923 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C4B9917201D1A4500245923 /* SaveAndCall */;
+			targetProxy = 4C4B9934201D1A4500245923 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4C4B9929201D1A4500245923 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C4B992A201D1A4500245923 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C4B993A201D1A4500245923 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4C4B993B201D1A4500245923 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C4B993D201D1A4500245923 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44DA0A84C155A177F59429B3 /* Pods-SaveAndCall.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SaveAndCall/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vesnigirev.SaveAndCall;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C4B993E201D1A4500245923 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7FBF2CC85D761F3495F9894 /* Pods-SaveAndCall.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SaveAndCall/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vesnigirev.SaveAndCall;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4C4B9940201D1A4500245923 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2C56B72CF48471DD4033044 /* Pods-SaveAndCallTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SaveAndCallTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vesnigirev.SaveAndCallTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SaveAndCall.app/SaveAndCall";
+			};
+			name = Debug;
+		};
+		4C4B9941201D1A4500245923 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 022DEEE81FD702E1933D6EF6 /* Pods-SaveAndCallTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SaveAndCallTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vesnigirev.SaveAndCallTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SaveAndCall.app/SaveAndCall";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C4B9913201D1A4500245923 /* Build configuration list for PBXProject "SaveAndCall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4B993A201D1A4500245923 /* Debug */,
+				4C4B993B201D1A4500245923 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C4B993C201D1A4500245923 /* Build configuration list for PBXNativeTarget "SaveAndCall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4B993D201D1A4500245923 /* Debug */,
+				4C4B993E201D1A4500245923 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C4B993F201D1A4500245923 /* Build configuration list for PBXNativeTarget "SaveAndCallTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4B9940201D1A4500245923 /* Debug */,
+				4C4B9941201D1A4500245923 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4C4B9924201D1A4500245923 /* SaveAndCall.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4C4B9925201D1A4500245923 /* SaveAndCall.xcdatamodel */,
+			);
+			currentVersion = 4C4B9925201D1A4500245923 /* SaveAndCall.xcdatamodel */;
+			path = SaveAndCall.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4C4B9910201D1A4500245923 /* Project object */;
+}
