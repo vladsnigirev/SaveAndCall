@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SVEContactModel;
 @interface SVEContactsTableCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *firstNameLabel;
 @property (nonatomic, strong) UILabel *lastNameLabel;
 @property (nonatomic, strong) UIImageView *profilePhotoImageView;
+@property (nonatomic, strong) UILabel *firstPhoneLabel;
+
+- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactModel *)contact;
+
 
 @end

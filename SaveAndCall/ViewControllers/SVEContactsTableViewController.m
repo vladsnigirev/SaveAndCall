@@ -48,7 +48,7 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 - (void)setupBarButtonItems
 {
     self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
-    self.sychronizeButton = [[UIBarButtonItem alloc] initWithTitle:@"Sychronize" style:UIBarButtonItemStylePlain target:self action:@selector(synchronizeWithSharedData)];
+    self.sychronizeButton = [[UIBarButtonItem alloc] initWithTitle:@"Sychronize" style:UIBarButtonItemStylePlain target:self action:@selector(synchronize)];
     [self.navigationItem setRightBarButtonItems:@[self.sychronizeButton]];
     [self.navigationItem setLeftBarButtonItems:@[self.logoutButton]];
 }
@@ -64,18 +64,8 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
     [[NSNotificationCenter defaultCenter] postNotificationName:SVELogoutFromVk object:nil];
 }
 
-- (void)synchronizeWithSharedData
+- (void)synchronize
 {
-    /*self.contactsArray = [SVESharedData sharedData].contacts;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView performBatchUpdates:^{
-        for (NSUInteger i = 0; i < self.contactsArray.count; i++)
-        {
-            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-        }
-    } completion:nil];
-    });*/
     [self.tableView reloadData];
 }
 
@@ -91,13 +81,21 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SVEContactsTableCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if (!cell)
+    {
+        cell = [[SVEContactsTableCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
+    }
     SVEContactModel *contact = self.contactsArray[indexPath.row];
     
-    cell.firstNameLabel.text = contact.firstNameString;
-    cell.lastNameLabel.text = contact.lastNameString;
-    cell.profilePhotoImageView.image = [UIImage imageWithData:contact.imageData];
+    cell = [cell configureCell:cell withContact:contact];
+
     [cell updateConstraints];
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"Your Contacts"];
 }
 
 

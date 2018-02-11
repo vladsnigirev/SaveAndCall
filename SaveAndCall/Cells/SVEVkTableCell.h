@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class SVEFriendModel;
 @interface SVEVkTableCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *firstNameLabel;
 @property (nonatomic, strong) UILabel *lastNameLabel;
 @property (nonatomic, strong) UIImageView *profilePhotoImageView;
+
+- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendModel *)friend;
 
 @end

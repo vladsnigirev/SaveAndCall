@@ -8,6 +8,7 @@
 
 #import "SVEVkTableCell.h"
 #import "Masonry.h"
+#import "SVEFriendModel.h"
 
 @implementation SVEVkTableCell
 
@@ -54,5 +55,22 @@
     self.profilePhotoImageView.clipsToBounds = YES;
     [super updateConstraints];
 }
+
+- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendModel *)friend
+{
+    cell.firstNameLabel.text = friend.firstNameString;
+    cell.lastNameLabel.text = friend.lastNameString;
+    
+    __block UIImage *image;
+    [cell updateConstraints];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_100_Url]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.profilePhotoImageView.image = image;
+        });
+    });
+    return cell;
+}
+
 
 @end

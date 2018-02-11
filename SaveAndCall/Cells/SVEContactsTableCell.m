@@ -8,6 +8,7 @@
 
 #import "SVEContactsTableCell.h"
 #import "Masonry.h"
+#import "SVEContactModel.h"
 
 @implementation SVEContactsTableCell
 
@@ -21,10 +22,13 @@
         _lastNameLabel = [[UILabel alloc] init];
         _lastNameLabel.numberOfLines = 0;
         _profilePhotoImageView = [[UIImageView alloc] init];
+        _firstPhoneLabel = [[UILabel alloc] init];
+        _firstPhoneLabel.numberOfLines = 0;
         
         [self.contentView addSubview:_firstNameLabel];
         [self.contentView addSubview:_lastNameLabel];
         [self.contentView addSubview:_profilePhotoImageView];
+        [self.contentView addSubview:_firstPhoneLabel];
     }
     return self;
 }
@@ -50,6 +54,11 @@
         make.top.equalTo(self.firstNameLabel.mas_bottom).with.offset(20);
         make.right.equalTo(self.firstNameLabel);
     }];
+    [self.firstPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(15);
+        make.left.equalTo(self.firstNameLabel.mas_left);
+        make.top.equalTo(self.lastNameLabel.mas_bottom).with.offset(15);
+    }];
     self.profilePhotoImageView.layer.cornerRadius = 50;
     self.profilePhotoImageView.clipsToBounds = YES;
     [super updateConstraints];
@@ -57,6 +66,22 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactModel *)contact
+{
+    cell.firstNameLabel.text = contact.firstNameString;
+    cell.lastNameLabel.text = contact.lastNameString;
+    cell.profilePhotoImageView.image = [UIImage imageWithData:contact.imageData];
+    if (!contact.phonesArray.count)
+    {
+        cell.firstPhoneLabel.text = nil;
+    }
+    else
+    {
+        cell.firstPhoneLabel.text = contact.phonesArray[0];
+    }
+    return cell;
 }
 
 @end

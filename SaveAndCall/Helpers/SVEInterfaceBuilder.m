@@ -21,7 +21,7 @@
 {
      SVEVkFriendsNavigationController *sveVkFriendsViewController = [[SVEVkFriendsNavigationController alloc] initWithRootViewController:[[SVEVkTableViewController alloc] init]];
      
-     SVEContactsNavigationController *sveContactsNavigationController = [[SVEContactsNavigationController alloc] initWithRootViewController:[[SVEContactsTableViewController alloc] init]];
+     SVEContactsNavigationController *sveContactsNavigationController = [[SVEContactsNavigationController alloc] initWithRootViewController:[[SVEContactsTableViewController alloc] initWithStyle:UITableViewStyleGrouped]];
      
      SVETabBarController *sveTabBarViewController =[[SVETabBarController alloc] init];
      
