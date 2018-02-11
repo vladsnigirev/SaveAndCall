@@ -23,18 +23,27 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 @property (nonatomic, strong) NSArray *friendsArray;
 @property (nonatomic, strong) SVENetworkService *networkService;
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
 @implementation SVEVkTableViewController
+@dynamic refreshControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBarButtons];
     [self setupTableView];
     [self setupNetworkService];
+    [self setupRefreshControl];
     [self.networkService getFriends];
+}
+
+- (void)setupRefreshControl
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshFriends) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)setupTableView
@@ -47,6 +56,14 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 {
     self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
     [self.navigationItem setLeftBarButtonItems:@[self.logoutButton]];
+}
+
+- (void)refreshFriends
+{
+    self.friendsArray = nil;
+    [self.tableView reloadData];
+    [self.networkService getFriends];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)logout
