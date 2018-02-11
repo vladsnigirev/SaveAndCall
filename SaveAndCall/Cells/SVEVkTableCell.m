@@ -60,15 +60,7 @@
 {
     cell.firstNameLabel.text = friend.firstNameString;
     cell.lastNameLabel.text = friend.lastNameString;
-    
-    __block UIImage *image;
-    [cell updateConstraints];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_100_Url]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.profilePhotoImageView.image = image;
-        });
-    });
+    cell.profilePhotoImageView.image = friend.photo_100_image;
     return cell;
 }
 

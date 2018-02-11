@@ -7,6 +7,7 @@
 //
 
 #import "SVEFriendModel.h"
+#import <UIKit/UIKit.h>
 
 @implementation SVEFriendModel
 
@@ -36,6 +37,7 @@
         {
             _photo_200_Url = [NSURL URLWithString:photo200String];
         }
+        _photo_100_image = nil;
     }
     return self;
 }

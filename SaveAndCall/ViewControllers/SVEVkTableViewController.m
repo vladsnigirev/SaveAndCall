@@ -63,7 +63,6 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     self.friendsArray = nil;
     [self.tableView reloadData];
     [self.networkService getFriends];
-    [self.refreshControl endRefreshing];
 }
 
 - (void)logout
@@ -93,7 +92,8 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     {
         cell = [[SVEVkTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    SVEFriendModel *friend = self.friendsArray[indexPath.row];    
+    SVEFriendModel *friend = self.friendsArray[indexPath.row];
+    
     cell = [cell configureCell:cell withFriend:friend];
     [cell updateConstraints];
     return cell;
@@ -110,14 +110,26 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
         return;
     }
     self.friendsArray = [SVEParseHelper parseVkFriendsFromData:data];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView performBatchUpdates:^{
-            for (NSUInteger i = 0; i < self.friendsArray.count; i++)
-            {
-                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            }
-        } completion:nil];
+    __block UIImage *image;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0) , ^{
+        for (SVEFriendModel *friend in self.friendsArray)
+        {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_100_Url]];
+            friend.photo_100_image = image;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView performBatchUpdates:^{
+                for (NSUInteger i = 0; i < self.friendsArray.count; i++)
+                {
+                    @autoreleasepool
+                    {
+                        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                    }
+                }
+                [self.refreshControl endRefreshing];
+            } completion:nil];
+        });
     });
     [self fillSharedDataWithFriendsArray:self.friendsArray];
 }
