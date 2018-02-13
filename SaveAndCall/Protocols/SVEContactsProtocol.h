@@ -8,6 +8,7 @@
 #import <Contacts/Contacts.h>
 
 @protocol SVEContactsProtocol <NSObject>
+
 @required
 - (void)gotContactsWithArray:(NSArray<CNContact *>  *)contactsArray;
 

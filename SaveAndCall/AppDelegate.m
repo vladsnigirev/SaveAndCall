@@ -7,13 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "SVEVkAuthorizationController.h"
-#import "SVETabBarController.h"
-#import "SVEVkFriendsNavigationController.h"
-#import "SVEVkTableViewController.h"
-#import "SVEContactsNavigationController.h"
-#import "SVEContactsTableViewController.h"
-#import "SVEUserDefaultsHelper.h"
 #import "SVERouter.h"
 
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
@@ -30,6 +23,8 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.router = [[SVERouter alloc] init];
+    self.tokenService = [[SVETokenService alloc] init];
+    self.tokenService.router = self.router;
     [self.router setDefinedViewController];
     [self.window makeKeyAndVisible];
     return YES;
@@ -63,7 +58,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
             }];
         }
     }
-    
     return _persistentContainer;
 }
 

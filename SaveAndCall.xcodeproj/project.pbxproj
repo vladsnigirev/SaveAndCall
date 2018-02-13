@@ -24,7 +24,7 @@
 		4C7BF69E202CCC6100BF4924 /* NSString+SVENumberEraser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7BF69D202CCC6100BF4924 /* NSString+SVENumberEraser.m */; };
 		4CA06E0E202B27C2009049BF /* SVESharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA06E0D202B27C2009049BF /* SVESharedData.m */; };
 		4CBF44A62025E48600C52A18 /* SVERouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44A52025E48600C52A18 /* SVERouter.m */; };
-		4CBF44A92025E5BE00C52A18 /* SVEUserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */; };
+		4CBF44A92025E5BE00C52A18 /* SVETokenService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44A82025E5BE00C52A18 /* SVETokenService.m */; };
 		4CBF44AC202721E500C52A18 /* SVEInterfaceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */; };
 		4CF62C8C20209008001552D1 /* SVENetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C8B20209008001552D1 /* SVENetworkService.m */; };
 		4CF62C942020A5B5001552D1 /* SVEFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C932020A5B5001552D1 /* SVEFriendModel.m */; };
@@ -79,13 +79,15 @@
 		4C6E71EC201F257400DDBAEF /* SVEContactsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactsTableViewController.m; sourceTree = "<group>"; };
 		4C7BF69C202CCC6100BF4924 /* NSString+SVENumberEraser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SVENumberEraser.h"; sourceTree = "<group>"; };
 		4C7BF69D202CCC6100BF4924 /* NSString+SVENumberEraser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SVENumberEraser.m"; sourceTree = "<group>"; };
+		4C7BF6A02031887D00BF4924 /* SVERouterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVERouterProtocol.h; sourceTree = "<group>"; };
+		4C7BF6A12031A01E00BF4924 /* SVELogoutProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVELogoutProtocol.h; sourceTree = "<group>"; };
 		4CA06E0C202B27C2009049BF /* SVESharedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVESharedData.h; sourceTree = "<group>"; };
 		4CA06E0D202B27C2009049BF /* SVESharedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVESharedData.m; sourceTree = "<group>"; };
 		4CA06E0F202B2818009049BF /* SVESharedDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVESharedDataProtocol.h; sourceTree = "<group>"; };
 		4CBF44A42025E48600C52A18 /* SVERouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVERouter.h; sourceTree = "<group>"; };
 		4CBF44A52025E48600C52A18 /* SVERouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVERouter.m; sourceTree = "<group>"; };
-		4CBF44A72025E5BE00C52A18 /* SVEUserDefaultsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEUserDefaultsHelper.h; sourceTree = "<group>"; };
-		4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEUserDefaultsHelper.m; sourceTree = "<group>"; };
+		4CBF44A72025E5BE00C52A18 /* SVETokenService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVETokenService.h; sourceTree = "<group>"; };
+		4CBF44A82025E5BE00C52A18 /* SVETokenService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVETokenService.m; sourceTree = "<group>"; };
 		4CBF44AA202721E500C52A18 /* SVEInterfaceBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEInterfaceBuilder.h; sourceTree = "<group>"; };
 		4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEInterfaceBuilder.m; sourceTree = "<group>"; };
 		4CF62C8A20209008001552D1 /* SVENetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVENetworkService.h; sourceTree = "<group>"; };
@@ -217,6 +219,8 @@
 		4C6E71C3201DE35E00DDBAEF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4CBF44A72025E5BE00C52A18 /* SVETokenService.h */,
+				4CBF44A82025E5BE00C52A18 /* SVETokenService.m */,
 				4C6E71C4201DE3A200DDBAEF /* SVEVkAuthorizationService.h */,
 				4C6E71C5201DE3A200DDBAEF /* SVEVkAuthorizationService.m */,
 				4CF62C8A20209008001552D1 /* SVENetworkService.h */,
@@ -262,6 +266,8 @@
 				4CF62C8E20209FD7001552D1 /* SVENetworkServiceProtocol.h */,
 				4CF62C9D202323C8001552D1 /* SVEContactsProtocol.h */,
 				4CA06E0F202B2818009049BF /* SVESharedDataProtocol.h */,
+				4C7BF6A02031887D00BF4924 /* SVERouterProtocol.h */,
+				4C7BF6A12031A01E00BF4924 /* SVELogoutProtocol.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -284,8 +290,6 @@
 				4CF62C9F2023466C001552D1 /* SVEParseHelper.m */,
 				4CBF44A42025E48600C52A18 /* SVERouter.h */,
 				4CBF44A52025E48600C52A18 /* SVERouter.m */,
-				4CBF44A72025E5BE00C52A18 /* SVEUserDefaultsHelper.h */,
-				4CBF44A82025E5BE00C52A18 /* SVEUserDefaultsHelper.m */,
 				4CBF44AA202721E500C52A18 /* SVEInterfaceBuilder.h */,
 				4CBF44AB202721E500C52A18 /* SVEInterfaceBuilder.m */,
 				4CA06E0C202B27C2009049BF /* SVESharedData.h */,
@@ -533,7 +537,7 @@
 				4CF62C9C20232398001552D1 /* SVEContactsService.m in Sources */,
 				4C6E71C6201DE3A200DDBAEF /* SVEVkAuthorizationService.m in Sources */,
 				4CF62C9920231AE0001552D1 /* SVEContactsTableCell.m in Sources */,
-				4CBF44A92025E5BE00C52A18 /* SVEUserDefaultsHelper.m in Sources */,
+				4CBF44A92025E5BE00C52A18 /* SVETokenService.m in Sources */,
 				4C4B991D201D1A4500245923 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,21 +14,28 @@
 #import "SVEFriendModel.h"
 #import "SVESharedDataProtocol.h"
 #import "SVESharedData.h"
+#import "AppDelegate.h"
 
 static NSString *reuseIdentifier = @"VkTableCell";
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
-@interface SVEVkTableViewController () <SVENetworkServiceProtocol,SVEFillSharedDataProtocol>
+@interface SVEVkTableViewController () <SVENetworkServiceProtocol, SVEFillSharedDataProtocol>
 
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 @property (nonatomic, strong) NSArray *friendsArray;
 @property (nonatomic, strong) SVENetworkService *networkService;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, weak) SVETokenService *tokenService;
 
 @end
 
 @implementation SVEVkTableViewController
 @dynamic refreshControl;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +43,10 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     [self setupTableView];
     [self setupNetworkService];
     [self setupRefreshControl];
+    [self.refreshControl beginRefreshing];
+    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    a.tokenService.delegate = self;
+    self.tokenService = a.tokenService;
     [self.networkService getFriends];
 }
 
@@ -67,7 +78,7 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
 - (void)logout
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVELogoutFromVk object:nil];
+    [self.tokenService clearUserDefaults];
 }
 
 -(void) setupNetworkService

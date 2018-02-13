@@ -8,8 +8,8 @@
 
 #import "SVEVkAuthorizationController.h"
 #import "SVEVkAuthorizationService.h"
-
-static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
+#import "SVETokenService.h"
+#import "AppDelegate.h"
 
 static const NSUInteger SVEAuthorizationButtonOxOffsett = 50;
 static const NSUInteger SVEAuthorizationButtonOyOffsett = 250;
@@ -26,6 +26,7 @@ static const NSUInteger SVEcontinueWithoutAuthorizationButtonHeight = 75;
 @property (nonatomic, strong) SVEVkAuthorizationService *authorizationService;
 @property (nonatomic, strong) UIButton *authorizationButton;
 @property (nonatomic, strong) UIButton *continueWithoutAuthorizationButton;
+@property (nonatomic, weak) SVETokenService *tokenService;
 
 @end
 
@@ -33,6 +34,9 @@ static const NSUInteger SVEcontinueWithoutAuthorizationButtonHeight = 75;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.tokenService.delegate = self;
+    self.tokenService = appDelegate.tokenService;
     self.authorizationService = [[SVEVkAuthorizationService alloc] init];
     self.authorizationService.SVEVkAuthorizationController = self;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -83,7 +87,7 @@ static const NSUInteger SVEcontinueWithoutAuthorizationButtonHeight = 75;
 
 - (void)continueButtonClicked
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVEContinueWithoutLogIn object:nil];
+    [self.tokenService continueWithoutAuthorization];
 }
 
 @end

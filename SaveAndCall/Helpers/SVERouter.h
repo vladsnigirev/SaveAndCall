@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SVERouterProtocol.h"
 
 //Router отвечает за смену root controller
 @class UIViewController;
-@interface SVERouter : NSObject
+@interface SVERouter : NSObject<SVERouterProtocol>
 
 - (UIViewController *)defineViewController;
 - (void)setDefinedViewController;

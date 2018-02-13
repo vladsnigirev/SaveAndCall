@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class CNContact;
 @interface SVEContactModel : NSObject
 
-@property (nonatomic, strong) NSString *firstNameString;
-@property (nonatomic, strong) NSString *lastNameString;
-@property (nonatomic, strong) NSArray *phonesArray;
+@property (nonatomic, readonly) NSString *firstNameString;
+@property (nonatomic, readonly) NSString *lastNameString;
+@property (nonatomic, readonly) NSArray *phonesArray;
 @property (nonatomic, strong) NSData *imageData;
+
+- (instancetype)initWithContact:(CNContact *)contact;
 
 @end

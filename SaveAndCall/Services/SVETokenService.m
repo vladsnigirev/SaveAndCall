@@ -6,18 +6,16 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-#import "SVEUserDefaultsHelper.h"
+#import "SVETokenService.h"
 #import "SVEParseHelper.h"
 
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
-static NSString *const SVEAppIsAuthorized = @"SVEAppIsAuthorized";
-static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
 
-@interface SVEUserDefaultsHelper ()
+@interface SVETokenService ()
 
 @end
 
-@implementation SVEUserDefaultsHelper
+@implementation SVETokenService
 
 - (instancetype)init
 {
@@ -36,7 +34,7 @@ static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
     if (!accessTokenDictionary)
     {
         [self clearUserDefaults];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppIsNotAuthorized object:nil];
+        [self.router switchMainControllerToAuthorization];
         return;
     }
         
@@ -53,15 +51,16 @@ static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
         
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppIsAuthorized object:nil];
+    [self.router switchAuthorizationControllerToMain];
 }
 
-+ (BOOL)isLogged
+- (BOOL)isLogged
 {
     NSDate *now = [NSDate date];
     NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:@"expires_in"];
     if (([now compare:expiresIn] == NSOrderedDescending) || (!expiresIn))
     {
+        [self clearUserDefaults];
         return NO;
     }
     else
@@ -81,6 +80,14 @@ static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
     
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogged"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.router switchMainControllerToAuthorization];
 }
+
+- (void)continueWithoutAuthorization
+{
+    [self.router switchAuthorizationControllerToMain];
+}
+
+
 
 @end

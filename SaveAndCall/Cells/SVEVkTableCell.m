@@ -22,6 +22,8 @@
         _lastNameLabel = [UILabel new];
         _lastNameLabel.numberOfLines = 0;
         _profilePhotoImageView = [[UIImageView alloc] init];
+        self.profilePhotoImageView.layer.cornerRadius = 50;
+        self.profilePhotoImageView.clipsToBounds = YES;
         
         [self.contentView addSubview:_firstNameLabel];
         [self.contentView addSubview:_lastNameLabel];
@@ -43,16 +45,14 @@
         make.height.mas_equalTo(20);
         make.left.equalTo(self.profilePhotoImageView.mas_right).with.offset(20);
         make.top.equalTo(self.profilePhotoImageView.mas_top);
-        make.right.equalTo(self.contentView).with.offset(-20);
+        make.right.lessThanOrEqualTo(self.contentView).with.offset(-20);
     }];
     [self.lastNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(20);
         make.left.equalTo(self.firstNameLabel.mas_left);
         make.top.equalTo(self.firstNameLabel.mas_bottom).with.offset(20);
-        make.right.equalTo(self.firstNameLabel);
+        make.right.lessThanOrEqualTo(self.contentView);
     }];
-    self.profilePhotoImageView.layer.cornerRadius = 50;
-    self.profilePhotoImageView.clipsToBounds = YES;
     [super updateConstraints];
 }
 

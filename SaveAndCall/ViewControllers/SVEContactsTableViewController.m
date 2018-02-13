@@ -22,7 +22,6 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 
 @interface SVEContactsTableViewController () <SVEContactsProtocol, SVEFillSharedDataProtocol>
 
-@property (nonatomic, strong) UIBarButtonItem *logoutButton;
 @property (nonatomic, strong) UIBarButtonItem *sychronizeButton;
 @property (nonatomic, strong) NSArray <SVEContactModel *> *contactsArray;
 @property (nonatomic, strong) SVEContactsService *contactService;
@@ -47,21 +46,14 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 
 - (void)setupBarButtonItems
 {
-    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
     self.sychronizeButton = [[UIBarButtonItem alloc] initWithTitle:@"Sychronize" style:UIBarButtonItemStylePlain target:self action:@selector(synchronize)];
     [self.navigationItem setRightBarButtonItems:@[self.sychronizeButton]];
-    [self.navigationItem setLeftBarButtonItems:@[self.logoutButton]];
 }
 
 - (void)setupContactService
 {
     self.contactService = [[SVEContactsService alloc] init];
     self.contactService.delegate = self;
-}
-
-- (void)logout
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVELogoutFromVk object:nil];
 }
 
 - (void)synchronize

@@ -23,11 +23,7 @@
         {
             for (CNContact *contact in contactsArray)
             {
-                SVEContactModel *contactModel = [[SVEContactModel alloc] init];
-                contactModel.phonesArray = [[contact.phoneNumbers valueForKey:@"value"] valueForKey:@"digits"];
-                contactModel.firstNameString = contact.givenName;
-                contactModel.lastNameString = contact.familyName;
-                contactModel.imageData = contact.thumbnailImageData;
+                SVEContactModel *contactModel = [[SVEContactModel alloc] initWithContact:contact];
                 [contactModelsArray addObject:contactModel];
             }
         }

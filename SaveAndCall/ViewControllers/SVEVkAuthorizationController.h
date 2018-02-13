@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <SafariServices/SafariServices.h>
+#import "SVELogoutProtocol.h"
 
-@interface SVEVkAuthorizationController : UIViewController <SFSafariViewControllerDelegate>
+@interface SVEVkAuthorizationController : UIViewController <SFSafariViewControllerDelegate, SVELogoutProtocol>
 
 @end

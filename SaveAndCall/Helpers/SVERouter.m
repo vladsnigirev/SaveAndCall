@@ -8,13 +8,10 @@
 
 #import "SVERouter.h"
 #import "SVEInterfaceBuilder.h"
-#import "SVEUserDefaultsHelper.h"
 #import <UIKit/UIKit.h>
 
-static NSString *const SVEAppIsAuthorized = @"SVEAppIsAuthorized";
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
-static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
 
 //Перечисление - состояние класса, зависит от того авторизован ли пользователь с помощью ВК.
 typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
@@ -26,7 +23,6 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 @interface SVERouter ()
 
 @property (nonatomic, assign) NSUInteger routerState;
-@property (nonatomic, strong) SVEUserDefaultsHelper *userDefaultsHelper;
 
 @end
 
@@ -45,17 +41,6 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
         {
             _routerState = SVEAuthorizedState;
         }
-        _userDefaultsHelper = [[SVEUserDefaultsHelper alloc] init];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchAuthorizationControllerToMain)
-                                                     name:SVEAppIsAuthorized object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchMainControllerToAuthorization) name:SVEAppIsNotAuthorized object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchMainControllerToAuthorization) name:SVELogoutFromVk object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(switchAuthorizationControllerToMain) name:SVEContinueWithoutLogIn object:nil];
@@ -81,22 +66,26 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 {
     UIApplication *app = [UIApplication sharedApplication];
     UIWindow *window = [app windows].firstObject;
-    window.rootViewController = [self defineViewController];
+    [UIView transitionWithView:window
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromBottom
+                     animations:^{
+        window.rootViewController = [self defineViewController];
+    } completion:nil];
 }
 
-// Замена контроллеров. Происходит по нотификациям.
+
+#pragma mark - SVERouterProtocol methods
+
+// Замена контроллеров. Происходит с помощью делегата у владельца токена (SVEUserDefaultsHelper)
 - (void)switchAuthorizationControllerToMain
 {
     self.routerState = SVEAuthorizedState;
     [self setDefinedViewController];
 }
-// Замена контроллеров. Происходит по нотификациям.
+// Замена контроллеров. Происходит с помощью делегата у владельца токена (SVEUserDefaultsHelper)
 - (void)switchMainControllerToAuthorization
 {
-    if ([SVEUserDefaultsHelper isLogged])
-    {
-        [self.userDefaultsHelper clearUserDefaults];
-    }
     self.routerState = SVENotAuthorizedState;
     [self setDefinedViewController];
 }

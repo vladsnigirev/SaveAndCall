@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSArray *vkFriendsWithTels;
 @property (nonatomic, strong) NSArray<SVEContactModel *> *contacts;
+//@property (nonatomic, strong) NSArray *
 
 + (instancetype)sharedData;
 

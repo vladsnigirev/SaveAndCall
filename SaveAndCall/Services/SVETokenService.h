@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SVERouterProtocol.h"
+#import "SVELogoutProtocol.h"
 
 // Класс для работы с userDefauls. Осуществляет проверку актуальности токена в userDefaults.
 // Также осуществляет удаления токена, когда пользователь выходит из ВК.
-@interface SVEUserDefaultsHelper : NSObject
+@interface SVETokenService : NSObject
 
-+ (BOOL)isLogged;
+@property (nonatomic, weak) id<SVERouterProtocol> router;
+@property (nonatomic, weak) id<SVELogoutProtocol> delegate;
+
+- (BOOL)isLogged;
 - (void)clearUserDefaults;
+- (void)continueWithoutAuthorization;
 
 @end
