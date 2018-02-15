@@ -7,6 +7,7 @@
 //
 
 #import "SVENetworkService.h"
+#import <UIKit/UIKit.h>
 
 @interface SVENetworkService ()
 
@@ -37,6 +38,17 @@
     }];
     [requestTask resume];
     
+}
+
+- (UIImage *)downloadImageByURL:(NSURL *)url
+{
+    if (!self.urlSession)
+    {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        self.urlSession = session;
+    }
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+    return image;
 }
 
 @end

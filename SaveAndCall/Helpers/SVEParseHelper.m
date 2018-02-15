@@ -7,8 +7,8 @@
 //
 
 #import "SVEParseHelper.h"
-#import "SVEFriendModel.h"
-#import "SVEContactModel.h"
+#import "SVEFriendRepresentation.h"
+#import "SVEContactRepresentation.h"
 #import <Contacts/Contacts.h>
 
 @implementation SVEParseHelper
@@ -23,7 +23,7 @@
         {
             for (CNContact *contact in contactsArray)
             {
-                SVEContactModel *contactModel = [[SVEContactModel alloc] initWithContact:contact];
+                SVEContactRepresentation *contactModel = [[SVEContactRepresentation alloc] initWithContact:contact];
                 [contactModelsArray addObject:contactModel];
             }
         }
@@ -44,7 +44,7 @@
         {
             if (![friendInfo objectForKey:@"deactivated"])
             {
-                SVEFriendModel *friend = [[SVEFriendModel alloc] initWithDictionary:friendInfo];
+                SVEFriendRepresentation *friend = [[SVEFriendRepresentation alloc] initWithDictionary:friendInfo];
                 [friends addObject:friend];
             }
         }

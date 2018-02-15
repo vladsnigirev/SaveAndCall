@@ -9,9 +9,8 @@
 #import "SVEChangeContactPhotoController.h"
 #import "SVEChangePhotoView.h"
 #import "SVEContactsTableViewController.h"
-#import "SVEContactModel.h"
-#import "SVESharedData.h"
-#import "SVEFriendModel.h"
+#import "SVEContactRepresentation.h"
+#import "SVEFriendRepresentation.h"
 #import "NSString+SVENumberEraser.h"
 
 @interface SVEChangeContactPhotoController ()
@@ -49,39 +48,39 @@
 
 - (void)changeContactPhoto
 {
-    if (![SVESharedData sharedData].vkFriendsWithTels.count)
-    {
-        self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:nil];
-        [self.view addSubview:self.changePhotoView];
-        [self.changePhotoView updateConstraints];
-        return;
-    }
-    for (SVEFriendModel *friend in [SVESharedData sharedData].vkFriendsWithTels)
-    {
-        NSString *findNumber = [friend.telNumberString sve_cutOffFirstDigit:friend.telNumberString];
-        for (NSString *number in [SVESharedData sharedData].contacts[self.index].phonesArray)
-        {
-            NSString *tempNumber = [number sve_cutOffFirstDigit:number];
-            if (![findNumber isEqualToString:tempNumber])
-            {
-                self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:nil];
-                [self.view addSubview:self.changePhotoView];
-                [self.changePhotoView updateConstraints];
-                return;
-            }
-            __block UIImage *image;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_200_Url]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.changePhotoView = [[SVEChangePhotoView alloc]
-                                            initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:image];
-                    [self.view addSubview:self.changePhotoView];
-                    [self.changePhotoView updateConstraints];
-                    });
-                });
-                self.photoChanged = YES;
-        }
-    }
+//    if (![SVESharedData sharedData].vkFriendsWithTels.count)
+//    {
+//        self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:nil];
+//        [self.view addSubview:self.changePhotoView];
+//        [self.changePhotoView updateConstraints];
+//        return;
+//    }
+//    for (SVEFriendRepresentation *friend in [SVESharedData sharedData].vkFriendsWithTels)
+//    {
+//        NSString *findNumber = [friend.phoneNumberString sve_cutOffFirstDigit:friend.phoneNumberString];
+//        for (NSString *number in [SVESharedData sharedData].contacts[self.index].phonesArray)
+//        {
+//            NSString *tempNumber = [number sve_cutOffFirstDigit:number];
+//            if (![findNumber isEqualToString:tempNumber])
+//            {
+//                self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:nil];
+//                [self.view addSubview:self.changePhotoView];
+//                [self.changePhotoView updateConstraints];
+//                return;
+//            }
+//            __block UIImage *image;
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_200_Url]];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.changePhotoView = [[SVEChangePhotoView alloc]
+//                                            initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:image];
+//                    [self.view addSubview:self.changePhotoView];
+//                    [self.changePhotoView updateConstraints];
+//                    });
+//                });
+//                self.photoChanged = YES;
+//        }
+//    }
 }
 
 - (void)acceptButtonTapped

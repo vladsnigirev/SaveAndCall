@@ -25,16 +25,12 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
     self.router = [[SVERouter alloc] init];
     self.tokenService = [[SVETokenService alloc] init];
     self.tokenService.router = self.router;
+    self.vkModel = [[SVEVkModel alloc] init];
+    self.contactsModel = [[SVEContactsModel alloc] init];
     [self.router setDefinedViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    
-}
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [self saveContext];
@@ -46,7 +42,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 @synthesize persistentContainer = _persistentContainer;
 
 - (NSPersistentContainer *)persistentContainer {
-    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {
             _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"SaveAndCall"];

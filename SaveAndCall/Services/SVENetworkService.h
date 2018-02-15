@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "SVENetworkServiceProtocol.h"
 
+@class UIImage;
 @interface SVENetworkService : NSObject 
 
 @property (nonatomic, weak) id<SVENetworkServiceProtocol> delegate;
-//запрос для получения друзей
-- (void)getFriends;
 
+- (void)getFriends;
+- (UIImage *)downloadImageByURL:(NSURL *)url;
 
 @end

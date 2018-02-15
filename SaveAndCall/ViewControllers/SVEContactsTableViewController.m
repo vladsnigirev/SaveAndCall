@@ -10,21 +10,24 @@
 #import "SVEContactsService.h"
 #import "SVEContactsTableCell.h"
 #import "SVEContactsProtocol.h"
-#import "SVEContactModel.h"
-#import "SVEParseHelper.h"
+#import "SVEContactRepresentation.h"
 #import "SVEChangePhotoView.h"
 #import "SVEChangeContactPhotoController.h"
-#import "SVESharedDataProtocol.h"
-#import "SVESharedData.h"
+#import "SVEContactsModel.h"
+#import "AppDelegate.h"
+#import "SVESynchronizationService.h"
 
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *reuseIdentifier = @"SVEContactTableViewCell";
+static CGFloat SVERefreshContactsTime = 1;
 
-@interface SVEContactsTableViewController () <SVEContactsProtocol, SVEFillSharedDataProtocol>
+@interface SVEContactsTableViewController () <SVEContactsProtocol>
 
 @property (nonatomic, strong) UIBarButtonItem *sychronizeButton;
-@property (nonatomic, strong) NSArray <SVEContactModel *> *contactsArray;
+@property (nonatomic, strong) NSArray <SVEContactRepresentation *> *contactsArray;
 @property (nonatomic, strong) SVEContactsService *contactService;
+@property (nonatomic, strong) SVEContactsModel *model;
+@property (nonatomic, strong) SVESynchronizationService *synchronizedService;
 
 @end
 
@@ -35,6 +38,9 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
     [self setupBarButtonItems];
     [self setupTableView];
     [self setupContactService];
+    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.model = a.contactsModel;
+//    self.synchronizedService = [[SVESynchronizationService alloc] init];
     [self.contactService getContacts];
 }
 
@@ -58,7 +64,17 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 
 - (void)synchronize
 {
-    [self.tableView reloadData];
+    self.synchronizedService = [[SVESynchronizationService alloc] init];
+    [self.synchronizedService synchronizeContactsWithfriends];
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationMiddle];
+    dispatch_time_t refreshTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)SVERefreshContactsTime * NSEC_PER_SEC);
+    dispatch_after(refreshTime, dispatch_get_main_queue(), ^{
+        if ([[UIApplication sharedApplication] isIgnoringInteractionEvents])
+        {
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        }
+    });
 }
 
 
@@ -66,21 +82,20 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.contactsArray.count;
+    return [self.model.contacts count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SVEContactsTableCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
     if (!cell)
     {
         cell = [[SVEContactsTableCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     }
-    SVEContactModel *contact = self.contactsArray[indexPath.row];
-    
+    SVEContactRepresentation *contact = self.model.contacts[indexPath.row];
     cell = [cell configureCell:cell withContact:contact];
-
     [cell updateConstraints];
     return cell;
 }
@@ -106,16 +121,9 @@ static NSString *reuseIdentifier = @"SVEContactTableViewCell";
 //Приходит массив контактов - SVEParseHelper разбирает его и присваевает contactsArray равным массиву моделей
 - (void)gotContactsWithArray:(NSArray *)contactsArray
 {
-    self.contactsArray = [SVEParseHelper parseContactsArray:contactsArray];
-    [self fillSharedDataWithContactsArray:self.contactsArray];
+    [self.model configureModelWithContactsArray:contactsArray];
 }
 
 
-#pragma mark - Shared Data Protocol
-
-- (void)fillSharedDataWithContactsArray:(NSArray *)contactsArray
-{
-    [SVESharedData sharedData].contacts = contactsArray;
-}
 
 @end

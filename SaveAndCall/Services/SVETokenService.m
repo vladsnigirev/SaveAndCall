@@ -58,7 +58,7 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 {
     NSDate *now = [NSDate date];
     NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:@"expires_in"];
-    if (([now compare:expiresIn] == NSOrderedDescending) || (!expiresIn))
+    if (([now compare:expiresIn] == NSOrderedDescending) || !(expiresIn))
     {
         [self clearUserDefaults];
         return NO;

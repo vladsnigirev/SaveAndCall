@@ -6,8 +6,10 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
+//Протокол, для получения данных.
 @protocol SVENetworkServiceProtocol <NSObject>
 
+@optional
 - (void)loadingIsDoneWithDataReceived:(NSData *)data;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "SVEContactsTableCell.h"
 #import "Masonry.h"
-#import "SVEContactModel.h"
+#import "SVEContactRepresentation.h"
 
 @implementation SVEContactsTableCell
 
@@ -68,7 +68,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactModel *)contact
+- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactRepresentation *)contact
 {
     cell.firstNameLabel.text = contact.firstNameString;
     cell.lastNameLabel.text = contact.lastNameString;

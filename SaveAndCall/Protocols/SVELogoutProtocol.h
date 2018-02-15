@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//Протокол для смены статуса авторизованности в вк
 @protocol SVELogoutProtocol <NSObject>
 
 @optional

@@ -8,7 +8,7 @@
 
 #import "SVEVkTableCell.h"
 #import "Masonry.h"
-#import "SVEFriendModel.h"
+#import "SVEFriendRepresentation.h"
 
 @implementation SVEVkTableCell
 
@@ -56,7 +56,7 @@
     [super updateConstraints];
 }
 
-- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendModel *)friend
+- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendRepresentation *)friend
 {
     cell.firstNameLabel.text = friend.firstNameString;
     cell.lastNameLabel.text = friend.lastNameString;

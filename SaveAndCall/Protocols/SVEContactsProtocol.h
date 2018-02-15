@@ -10,6 +10,7 @@
 @protocol SVEContactsProtocol <NSObject>
 
 @required
-- (void)gotContactsWithArray:(NSArray<CNContact *>  *)contactsArray;
+
+- (void)gotContactsWithArray:(NSArray<CNContact *> *)contactsArray;
 
 @end

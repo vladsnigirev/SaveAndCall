@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SVEContactModel;
+@class SVEContactRepresentation;
 @interface SVEContactsTableCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *firstNameLabel;
@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIImageView *profilePhotoImageView;
 @property (nonatomic, strong) UILabel *firstPhoneLabel;
 
-- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactModel *)contact;
+- (SVEContactsTableCell *)configureCell:(SVEContactsTableCell *)cell withContact:(SVEContactRepresentation *)contact;
 
 
 @end

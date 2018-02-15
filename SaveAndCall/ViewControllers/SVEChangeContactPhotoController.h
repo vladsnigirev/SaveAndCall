@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class SVEContactModel;
+@class SVEContactRepresentation;
 @interface SVEChangeContactPhotoController : UIViewController
 
-@property (nonatomic, weak) NSArray <SVEContactModel *> *contactsArray;
+@property (nonatomic, weak) NSArray <SVEContactRepresentation *> *contactsArray;
 @property (nonatomic, assign) NSUInteger index;
 
 @end

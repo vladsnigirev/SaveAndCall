@@ -9,6 +9,8 @@
 #import "SVERouter.h"
 #import "SVEInterfaceBuilder.h"
 #import <UIKit/UIKit.h>
+#import "SVEModelCleanerProtocol.h"
+#import "AppDelegate.h"
 
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
@@ -20,7 +22,7 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     SVENotAuthorizedState
 };
 
-@interface SVERouter ()
+@interface SVERouter () <SVEModelCleanerProtocol>
 
 @property (nonatomic, assign) NSUInteger routerState;
 
@@ -77,17 +79,29 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 
 #pragma mark - SVERouterProtocol methods
 
-// Замена контроллеров. Происходит с помощью делегата у владельца токена (SVEUserDefaultsHelper)
+// Замена контроллеров.
 - (void)switchAuthorizationControllerToMain
 {
     self.routerState = SVEAuthorizedState;
+    [self clearModels];
     [self setDefinedViewController];
 }
-// Замена контроллеров. Происходит с помощью делегата у владельца токена (SVEUserDefaultsHelper)
+// Замена контроллеров.
 - (void)switchMainControllerToAuthorization
 {
     self.routerState = SVENotAuthorizedState;
+    [self clearModels];
     [self setDefinedViewController];
+}
+
+
+#pragma mark - SVEModelCleanerProtocol
+
+- (void)clearModels
+{
+    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    a.vkModel.vkFriends = nil;
+    a.contactsModel.contacts = nil;
 }
 
 
