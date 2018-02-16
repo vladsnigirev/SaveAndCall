@@ -77,6 +77,13 @@
     {
         return YES;
     }
+    if (self.photo_100_Url == nil
+        && self.photo_200_Url == nil
+        && [self.firstNameString isEqualToString:friend.firstNameString]
+        && [self.lastNameString isEqualToString:friend.lastNameString])
+    {
+        return  YES;
+    }
     return NO;
 }
 

@@ -26,6 +26,7 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) SVETokenService *tokenService;
 @property (nonatomic, strong) SVEVkModel *model;
+@property (nonatomic, copy) NSArray *friends;
 
 @end
 
@@ -48,6 +49,7 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     a.tokenService.delegate = self;
     self.model = a.vkModel;
+    self.friends = self.model.vkFriends;
     self.tokenService = a.tokenService;
     [self.networkService getFriends];
 }
@@ -73,7 +75,8 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
 - (void)refreshFriends
 {
-    self.model.vkFriends = nil;
+    //self.model.vkFriends = nil;
+    self.friends = nil;
     [self.tableView reloadData];
     [self.networkService getFriends];
 }
@@ -94,7 +97,8 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.model countOfVkFriends];
+    return self.friends.count;
+    //return [self.model countOfVkFriends];
 }
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,7 +109,8 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     {
         cell = [[SVEVkTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    SVEFriendRepresentation *friend = self.model.vkFriends[indexPath.row];
+//    SVEFriendRepresentation *friend = self.model.vkFriends[indexPath.row];
+    SVEFriendRepresentation *friend = self.friends[indexPath.row];
     cell = [cell configureCell:cell withFriend:friend];
     [cell updateConstraints];
     return cell;
@@ -124,6 +129,7 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
                 friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
             }
         });
+        self.friends = self.model.vkFriends;
         [self.tableView performBatchUpdates:^{
             for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
             {

@@ -24,7 +24,6 @@ static CGFloat SVERefreshContactsTime = 1;
 @interface SVEContactsTableViewController () <SVEContactsProtocol>
 
 @property (nonatomic, strong) UIBarButtonItem *sychronizeButton;
-@property (nonatomic, strong) NSArray <SVEContactRepresentation *> *contactsArray;
 @property (nonatomic, strong) SVEContactsService *contactService;
 @property (nonatomic, strong) SVEContactsModel *model;
 @property (nonatomic, strong) SVESynchronizationService *synchronizedService;
@@ -111,7 +110,7 @@ static CGFloat SVERefreshContactsTime = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SVEChangeContactPhotoController *vc = [[SVEChangeContactPhotoController alloc] init];
-    vc.contactsArray = self.contactsArray;
+    vc.contactsArray = self.model.contacts;
     vc.index = indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];
 }

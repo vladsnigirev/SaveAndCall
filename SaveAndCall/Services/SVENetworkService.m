@@ -33,7 +33,10 @@
     [friendsRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [friendsRequest setTimeoutInterval:10];
     
-    NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:
+                                         ^(NSData * _Nullable data,
+                                           NSURLResponse * _Nullable response,
+                                           NSError * _Nullable error) {
         [self.delegate loadingIsDoneWithDataReceived:data];
     }];
     [requestTask resume];

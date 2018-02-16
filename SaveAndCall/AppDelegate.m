@@ -70,7 +70,9 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
     NSDictionary *dictionaryForUserInfo = [NSDictionary dictionaryWithObject:url forKey:@"Url"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppGotInformationAfterAutorization object:nil userInfo:dictionaryForUserInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppGotInformationAfterAutorization
+                                                        object:nil
+                                                      userInfo:dictionaryForUserInfo];
     return YES;
 }
 

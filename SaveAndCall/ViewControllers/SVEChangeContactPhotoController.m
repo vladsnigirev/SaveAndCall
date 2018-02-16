@@ -39,9 +39,9 @@
     UINavigationController *cnc = [array firstObject];
     UIViewController *vc = [cnc.viewControllers objectAtIndex:0];*/
     
-    //self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-115) vkPhoto:[UIImage imageWithData:self.contactsArray[self.index].imageData]];
-   // [self.view addSubview:self.changePhotoView];
-   // [self.changePhotoView updateConstraints];
+    self.changePhotoView = [[SVEChangePhotoView alloc] initWithFrame:CGRectMake(0, 60, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-105) contact:self.contactsArray[self.index]];
+    [self.view addSubview:self.changePhotoView];
+    [self.changePhotoView updateConstraints];
     self.photoChanged = NO;
     [self changeContactPhoto];
 }

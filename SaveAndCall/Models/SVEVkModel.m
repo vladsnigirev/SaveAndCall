@@ -22,12 +22,15 @@
 
 - (void)configureModelWithData:(NSData *)data;
 {
-    if (!data)
+    self.coreDataService = [[SVECoreDataService alloc] init];
+    self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
+    if (!self.vkFriends)
     {
         self.vkFriends = [self.coreDataService friensFromCoreData];
         return;
     }
-    self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
+    //self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
+    [self.coreDataService saveFriends];
 }
 
 - (NSUInteger)countOfVkFriends

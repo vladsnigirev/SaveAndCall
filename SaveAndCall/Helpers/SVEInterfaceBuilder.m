@@ -19,9 +19,13 @@
 
 + (UIViewController *)buildMainController
 {
-     SVEVkFriendsNavigationController *sveVkFriendsViewController = [[SVEVkFriendsNavigationController alloc] initWithRootViewController:[[SVEVkTableViewController alloc] init]];
+     SVEVkFriendsNavigationController *sveVkFriendsViewController = [[SVEVkFriendsNavigationController alloc]
+                                                                     initWithRootViewController:[[SVEVkTableViewController alloc]
+                                                                                                 init]];
      
-     SVEContactsNavigationController *sveContactsNavigationController = [[SVEContactsNavigationController alloc] initWithRootViewController:[[SVEContactsTableViewController alloc] initWithStyle:UITableViewStyleGrouped]];
+     SVEContactsNavigationController *sveContactsNavigationController = [[SVEContactsNavigationController alloc]
+                                                                         initWithRootViewController:[[SVEContactsTableViewController alloc]
+                                                                                                     initWithStyle:UITableViewStyleGrouped]];
      
      SVETabBarController *sveTabBarViewController =[[SVETabBarController alloc] init];
      

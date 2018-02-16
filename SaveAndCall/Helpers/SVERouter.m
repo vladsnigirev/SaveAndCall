@@ -45,7 +45,8 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
         }
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchAuthorizationControllerToMain) name:SVEContinueWithoutLogIn object:nil];
+                                              selector:@selector(switchAuthorizationControllerToMain)
+                                              name:SVEContinueWithoutLogIn object:nil];
     }
     return self;
 }

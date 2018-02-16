@@ -14,27 +14,30 @@
 @interface SVECoreDataService ()
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
+//@property (nonatomic, strong) NSArray *friends;
 
 @end
 
 @implementation SVECoreDataService
 
-- (NSManagedObjectContext *)context
+-(instancetype)init
 {
-    if (_context) {
-        return _context;
+    self = [super init];
+    if (self)
+    {
+        UIApplication *application = [UIApplication sharedApplication];
+        NSPersistentContainer* container = ((AppDelegate *)(application.delegate)).persistentContainer;
+        _context = container.viewContext;
     }
-    UIApplication *application = [UIApplication sharedApplication];
-    NSPersistentContainer* container = ((AppDelegate *)(application.delegate)).persistentContainer;
-    NSManagedObjectContext *context = container.viewContext;
-    
-    return context;
+    return self;
 }
 
-- (void)saveFriends:(NSArray *)friends
+- (void)saveFriends;
 {
     [self clearCoreData];
-    for (SVEFriendRepresentation *friend in friends)
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   // self.friends = appDelegate.vkModel.vkFriends;
+    for (SVEFriendRepresentation *friend in appDelegate.vkModel.vkFriends)
     {
         @autoreleasepool
         {

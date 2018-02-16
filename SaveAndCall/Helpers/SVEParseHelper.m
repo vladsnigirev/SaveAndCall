@@ -37,6 +37,10 @@
 {
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSArray *friendsInfoArray = [JSONDictionary objectForKey:@"response"];
+    if (!friendsInfoArray)
+    {
+        return nil;
+    }
     NSMutableArray *friends = [NSMutableArray array];
     for (NSDictionary *friendInfo in friendsInfoArray)
     {

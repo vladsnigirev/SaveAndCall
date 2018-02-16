@@ -22,7 +22,10 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
     self = [super init];
     if (self)
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fillUserDefaults:) name:SVEAppGotInformationAfterAutorization object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(fillUserDefaults:)
+                                              name:SVEAppGotInformationAfterAutorization
+                                              object:nil];
     }
     return self;
 }

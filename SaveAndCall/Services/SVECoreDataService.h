@@ -11,7 +11,8 @@
 @class SVEFriendModel;
 @interface SVECoreDataService : NSObject
 
-- (void)saveFriends:(NSArray<SVEFriendModel *> *)friends;
+-(instancetype)init;
+- (void)saveFriends;
 - (NSArray *)friensFromCoreData;
 
 @end
