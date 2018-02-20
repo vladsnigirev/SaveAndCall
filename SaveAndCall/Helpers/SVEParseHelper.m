@@ -7,11 +7,16 @@
 //
 
 #import "SVEParseHelper.h"
-#import "SVEFriendModel.h"
-#import "SVEContactModel.h"
+#import "SVEFriendRepresentation.h"
+#import "SVEContactRepresentation.h"
 #import <Contacts/Contacts.h>
 
+
 @implementation SVEParseHelper
+
+
+#pragma mark - Class Methods
+
 //Парсит массив моделей, полученных с помощью Contacts Framework и возвращает массив локальных моделей(SVEContactModel)
 //@param contactsArray - массив моделей из Contacts Framework
 + (NSArray *)parseContactsArray:(NSArray *)contactsArray
@@ -23,11 +28,7 @@
         {
             for (CNContact *contact in contactsArray)
             {
-                SVEContactModel *contactModel = [[SVEContactModel alloc] init];
-                contactModel.phonesArray = [[contact.phoneNumbers valueForKey:@"value"] valueForKey:@"digits"];
-                contactModel.firstNameString = contact.givenName;
-                contactModel.lastNameString = contact.familyName;
-                contactModel.imageData = contact.thumbnailImageData;
+                SVEContactRepresentation *contactModel = [[SVEContactRepresentation alloc] initWithContact:contact];
                 [contactModelsArray addObject:contactModel];
             }
         }
@@ -41,6 +42,10 @@
 {
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSArray *friendsInfoArray = [JSONDictionary objectForKey:@"response"];
+    if (!friendsInfoArray)
+    {
+        return nil;
+    }
     NSMutableArray *friends = [NSMutableArray array];
     for (NSDictionary *friendInfo in friendsInfoArray)
     {
@@ -48,7 +53,7 @@
         {
             if (![friendInfo objectForKey:@"deactivated"])
             {
-                SVEFriendModel *friend = [[SVEFriendModel alloc] initWithDictionary:friendInfo];
+                SVEFriendRepresentation *friend = [[SVEFriendRepresentation alloc] initWithDictionary:friendInfo];
                 [friends addObject:friend];
             }
         }
@@ -84,5 +89,6 @@
     }
     return [dictionaryWithToken copy];
 }
+
 
 @end

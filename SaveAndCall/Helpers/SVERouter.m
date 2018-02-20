@@ -8,13 +8,14 @@
 
 #import "SVERouter.h"
 #import "SVEInterfaceBuilder.h"
-#import "SVEUserDefaultsHelper.h"
 #import <UIKit/UIKit.h>
+#import "SVEModelCleanerProtocol.h"
+#import "AppDelegate.h"
 
-static NSString *const SVEAppIsAuthorized = @"SVEAppIsAuthorized";
+
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
-static NSString *const SVEAppIsNotAuthorized = @"SVEAppIsNotAuthorized";
+
 
 //Перечисление - состояние класса, зависит от того авторизован ли пользователь с помощью ВК.
 typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
@@ -23,14 +24,24 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     SVENotAuthorizedState
 };
 
-@interface SVERouter ()
+
+@interface SVERouter () <SVEModelCleanerProtocol>
+
 
 @property (nonatomic, assign) NSUInteger routerState;
-@property (nonatomic, strong) SVEUserDefaultsHelper *userDefaultsHelper;
+
 
 @end
 
 @implementation SVERouter
+
+
+#pragma mark - Lifecycle
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (instancetype)init
 {
@@ -45,23 +56,17 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
         {
             _routerState = SVEAuthorizedState;
         }
-        _userDefaultsHelper = [[SVEUserDefaultsHelper alloc] init];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchAuthorizationControllerToMain)
-                                                     name:SVEAppIsAuthorized object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchMainControllerToAuthorization) name:SVEAppIsNotAuthorized object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchMainControllerToAuthorization) name:SVELogoutFromVk object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(switchAuthorizationControllerToMain) name:SVEContinueWithoutLogIn object:nil];
+                                              selector:@selector(switchAuthorizationControllerToMain)
+                                              name:SVEContinueWithoutLogIn object:nil];
     }
     return self;
 }
+
+
+#pragma mark - Public
+
 // Функция определения root контроллера. Если пользователь не авторизован, экран авторизации,
 // иначе главный экран.
 - (UIViewController *)defineViewController
@@ -81,24 +86,40 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 {
     UIApplication *app = [UIApplication sharedApplication];
     UIWindow *window = [app windows].firstObject;
-    window.rootViewController = [self defineViewController];
+    [UIView transitionWithView:window
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                     animations:^{
+        window.rootViewController = [self defineViewController];
+    } completion:nil];
 }
 
-// Замена контроллеров. Происходит по нотификациям.
+
+#pragma mark - SVERouterProtocol
+
+// Замена контроллеров.
 - (void)switchAuthorizationControllerToMain
 {
     self.routerState = SVEAuthorizedState;
+    [self clearModels];
     [self setDefinedViewController];
 }
-// Замена контроллеров. Происходит по нотификациям.
+// Замена контроллеров.
 - (void)switchMainControllerToAuthorization
 {
-    if ([SVEUserDefaultsHelper isLogged])
-    {
-        [self.userDefaultsHelper clearUserDefaults];
-    }
     self.routerState = SVENotAuthorizedState;
+    [self clearModels];
     [self setDefinedViewController];
+}
+
+
+#pragma mark - SVEModelCleanerProtocol
+
+- (void)clearModels
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.vkModel.vkFriends = nil;
+    appDelegate.contactsModel.contacts = nil;
 }
 
 

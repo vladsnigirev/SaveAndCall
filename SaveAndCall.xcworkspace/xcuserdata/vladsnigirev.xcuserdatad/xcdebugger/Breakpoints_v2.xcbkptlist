@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SaveAndCall/ViewControllers/SVEChangeContactPhotoController.m"
-            timestampString = "539897950.430437"
+            filePath = "SaveAndCall/Models/SVEVkModel.m"
+            timestampString = "540813787.8671761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-acceptButtonTapped"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-configureModelWithData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

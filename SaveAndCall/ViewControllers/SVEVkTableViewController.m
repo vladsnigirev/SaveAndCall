@@ -10,31 +10,64 @@
 #import "SVEVkTableCell.h"
 #import "SVENetworkServiceProtocol.h"
 #import "SVENetworkService.h"
-#import "SVEParseHelper.h"
-#import "SVEFriendModel.h"
-#import "SVESharedDataProtocol.h"
-#import "SVESharedData.h"
+#import "SVEFriendRepresentation.h"
+#import "AppDelegate.h"
+#import "SVEVkModel.h"
+
 
 static NSString *reuseIdentifier = @"VkTableCell";
-static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
+static CGFloat SVERefreshTableTime = 1.f;
 
-@interface SVEVkTableViewController () <SVENetworkServiceProtocol,SVEFillSharedDataProtocol>
+
+@interface SVEVkTableViewController () <SVENetworkServiceProtocol>
+
 
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
-@property (nonatomic, strong) NSArray *friendsArray;
 @property (nonatomic, strong) SVENetworkService *networkService;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) SVETokenService *tokenService;
+@property (nonatomic, strong) SVEVkModel *model;
+@property (nonatomic, copy) NSArray *friends;
 
 
 @end
 
 @implementation SVEVkTableViewController
 
+@dynamic refreshControl;
+
+
+#pragma mark - Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tokenService isLogged];
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBarButtons];
     [self setupTableView];
     [self setupNetworkService];
+    [self setupRefreshControl];
+    [self.refreshControl beginRefreshing];
+    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    a.tokenService.delegate = self;
+    self.model = a.vkModel;
+    self.friends = self.model.vkFriends;
+    self.tokenService = a.tokenService;
     [self.networkService getFriends];
+}
+
+
+#pragma mark - Private
+
+- (void)setupRefreshControl
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshFriends) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)setupTableView
@@ -45,13 +78,15 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
 - (void)setupBarButtons
 {
-    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logout)];
     [self.navigationItem setLeftBarButtonItems:@[self.logoutButton]];
 }
 
-- (void)logout
+- (void)refreshFriends
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVELogoutFromVk object:nil];
+    [self.tokenService isLogged];
+    
+    [self.networkService getFriends];
 }
 
 -(void) setupNetworkService
@@ -61,75 +96,78 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Buttons' Actions
+
+- (void)logout
+{
+    [self.tokenService clearUserDefaults];
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 140.f;
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.friendsArray.count;
+    return self.friends.count;
 }
-//
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SVEVkTableCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    SVEFriendModel *friend = self.friendsArray[indexPath.row];
     
-    cell.firstNameLabel.text = friend.firstNameString;
-    cell.lastNameLabel.text = friend.lastNameString;
-    
-    __block UIImage *image;
+    if (!cell)
+    {
+        cell = [[SVEVkTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    SVEFriendRepresentation *friend = self.friends[indexPath.row];
+    cell = [cell configureCell:cell withFriend:friend];
     [cell updateConstraints];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:friend.photo_100_Url]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.profilePhotoImageView.image = image;
-        });
-    });
     return cell;
 }
 
 
-#pragma mark - Network Service Protocol
+#pragma mark - NetworkServiceProtocol
 
 - (void)loadingIsDoneWithDataReceived:(NSData *)data
 {
-    if (!data)
-    {
-        //что-то пошло не так. Вызвать функцию заполняющаю таблицу друзей из кордаты.
-        return;
-    }
-    self.friendsArray = [SVEParseHelper parseVkFriendsFromData:data];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView performBatchUpdates:^{
-            for (NSUInteger i = 0; i < self.friendsArray.count; i++)
+        [self.model configureModelWithData:data];
+        dispatch_time_t refreshTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)SVERefreshTableTime * NSEC_PER_SEC);
+        dispatch_after(refreshTime,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_group_t dispatchGroup = dispatch_group_create();
+            for (SVEFriendRepresentation *friend in self.model.vkFriends)
             {
-                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                dispatch_group_enter(dispatchGroup);
+                if (!friend.photo_100_image)
+                {
+                    friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
+                }
+                dispatch_group_leave(dispatchGroup);
             }
-        } completion:nil];
+            dispatch_group_wait(dispatchGroup, 0);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.friends = nil;
+                [self.tableView reloadData];
+                self.friends = self.model.vkFriends;
+                [self.tableView performBatchUpdates:^{
+                    for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
+                    {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    [self.refreshControl endRefreshing];
+                } completion:nil];
+            });
+        });
     });
-    [self fillSharedDataWithFriendsArray:self.friendsArray];
 }
 
-
-#pragma mark - Shared Data Protocol
-
-- (void)fillSharedDataWithFriendsArray:(NSArray *)friendsArray
-{
-    NSMutableArray *tempArray = [NSMutableArray array];
-    for (SVEFriendModel *friend in friendsArray)
-    {
-        if (friend.telNumberString)
-        {
-            if (friend.telNumberString.length == 10 || friend.telNumberString.length == 11)
-            {
-                friend.telNumberString = [[friend.telNumberString componentsSeparatedByCharactersInSet:
-                                       [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
-                                      componentsJoinedByString:@""];
-                [tempArray addObject:friend];
-            }
-        }
-    }
-    [SVESharedData sharedData].vkFriendsWithTels = [tempArray copy];
-}
 
 @end

@@ -7,14 +7,21 @@
 //
 
 #import "SVENetworkService.h"
+#import <UIKit/UIKit.h>
+
 
 @interface SVENetworkService ()
+
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 
 @end
 
+
 @implementation SVENetworkService
+
+
+#pragma mark - Public
 
 - (void) getFriends
 {
@@ -32,11 +39,26 @@
     [friendsRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [friendsRequest setTimeoutInterval:10];
     
-    NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:
+                                         ^(NSData * _Nullable data,
+                                           NSURLResponse * _Nullable response,
+                                           NSError * _Nullable error) {
         [self.delegate loadingIsDoneWithDataReceived:data];
     }];
     [requestTask resume];
     
 }
+
+- (UIImage *)downloadImageByURL:(NSURL *)url
+{
+    if (!self.urlSession)
+    {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        self.urlSession = session;
+    }
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+    return image;
+}
+
 
 @end

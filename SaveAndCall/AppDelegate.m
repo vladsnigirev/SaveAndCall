@@ -7,22 +7,20 @@
 //
 
 #import "AppDelegate.h"
-#import "SVEVkAuthorizationController.h"
-#import "SVETabBarController.h"
-#import "SVEVkFriendsNavigationController.h"
-#import "SVEVkTableViewController.h"
-#import "SVEContactsNavigationController.h"
-#import "SVEContactsTableViewController.h"
-#import "SVEUserDefaultsHelper.h"
 #import "SVERouter.h"
+
 
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
 
+
 @interface AppDelegate ()
+
 
 @property (nonatomic, strong) SVERouter *router;
 
+
 @end
+
 
 @implementation AppDelegate
 
@@ -30,16 +28,14 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.router = [[SVERouter alloc] init];
+    self.tokenService = [[SVETokenService alloc] init];
+    self.tokenService.router = self.router;
+    self.vkModel = [[SVEVkModel alloc] init];
+    self.contactsModel = [[SVEContactsModel alloc] init];
     [self.router setDefinedViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    
-}
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [self saveContext];
@@ -51,7 +47,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 @synthesize persistentContainer = _persistentContainer;
 
 - (NSPersistentContainer *)persistentContainer {
-    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {
             _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"SaveAndCall"];
@@ -63,7 +58,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
             }];
         }
     }
-    
     return _persistentContainer;
 }
 
@@ -78,11 +72,16 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
     }
 }
 
+#pragma mark - UIApplicationDelegate
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
     NSDictionary *dictionaryForUserInfo = [NSDictionary dictionaryWithObject:url forKey:@"Url"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppGotInformationAfterAutorization object:nil userInfo:dictionaryForUserInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SVEAppGotInformationAfterAutorization
+                                                        object:nil
+                                                      userInfo:dictionaryForUserInfo];
     return YES;
 }
+
 
 @end

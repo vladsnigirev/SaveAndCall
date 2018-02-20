@@ -9,17 +9,26 @@
 #import "SVEVkAuthorizationService.h"
 #import "SVEVkAuthorizationController.h"
 
+
 static NSString *const SVEVkAuthorizationStringViaVkApp = @"vkauthorize://authorize";
 static NSString *const SVEAppId = @"6337307";
 static NSString *const SVEVkAuthorizationStringViaSafari = @"https://oauth.vk.com/authorize?client_id=6337307&revoke=1&scope=friends%2Cphotos&redirect_uri=vk6337307%3A%2F%2Fauthorize&response_type=token";
 
+
 @implementation SVEVkAuthorizationService
+
+
+#pragma mark - Private
 
 //Проверака наличия приложения вк на устройстве
 - (BOOL) vkAppExists
 {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:SVEVkAuthorizationStringViaVkApp]];
 }
+
+
+#pragma mark - Public
+
 //Функция авторизации пользователя. Проверяет доступность приложения ВК на устройстве и авторизовывает пользователя.
 //При отсутствии доступа к приложению авторизация через Safari.
 - (void) authorize
@@ -29,12 +38,7 @@ static NSString *const SVEVkAuthorizationStringViaSafari = @"https://oauth.vk.co
         UIApplication *application = [UIApplication sharedApplication];
         NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly: @NO};
         NSURL *url = [NSURL URLWithString:SVEVkAuthorizationStringViaVkApp];
-        [application openURL:url options:options completionHandler:^(BOOL success) {
-            if (!success)
-            {
-                NSLog(@"Vk authorization");
-            }
-        }];
+        [application openURL:url options:options completionHandler:nil];
     }
     else
     {
@@ -43,5 +47,6 @@ static NSString *const SVEVkAuthorizationStringViaSafari = @"https://oauth.vk.co
         [self.SVEVkAuthorizationController presentViewController:safariController animated:YES completion:nil];
     }
 }
+
 
 @end

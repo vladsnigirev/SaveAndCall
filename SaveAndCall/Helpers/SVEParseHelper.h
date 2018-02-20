@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class SVEFriendModel,SVEContactModel;
+
+@class SVEFriendRepresentation,SVEContactRepresentation;
+
 
 //Класс для парсинга различных сущностей.
 @interface SVEParseHelper : NSObject
 
-+ (NSArray<SVEContactModel *> *)parseContactsArray:(NSArray *)contactsArray;
-+ (NSArray<SVEFriendModel *> *)parseVkFriendsFromData:(NSData *)data;
+
++ (NSArray<SVEContactRepresentation *> *)parseContactsArray:(NSArray *)contactsArray;
++ (NSArray<SVEFriendRepresentation *> *)parseVkFriendsFromData:(NSData *)data;
 + (NSDictionary *)parseAuthorizationUrl:(NSURL *)url;
+
 
 @end

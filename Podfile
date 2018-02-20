@@ -10,6 +10,8 @@ pod 'Masonry'
 
   target 'SaveAndCallTests' do
     inherit! :search_paths
+pod 'Expecta', '~> 1.0'
+pod 'OCMock'
     # Pods for testing
   end
 

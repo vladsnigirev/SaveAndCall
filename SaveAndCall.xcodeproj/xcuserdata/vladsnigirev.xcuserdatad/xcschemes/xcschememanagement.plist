@@ -7,7 +7,20 @@
 		<key>SaveAndCall.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4C4B9917201D1A4500245923</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C4B9932201D1A4500245923</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

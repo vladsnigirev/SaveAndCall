@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SVELogoutProtocol.h"
 
-@interface SVEVkTableViewController : UITableViewController
+
+@interface SVEVkTableViewController : UITableViewController <SVELogoutProtocol>
+
 
 @end
