@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 
 #pragma mark - Lifecycle
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)init
 {
     self = [super init];

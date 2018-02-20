@@ -136,32 +136,6 @@ static CGFloat SVERefreshTableTime = 1.f;
 #pragma mark - NetworkServiceProtocol
 
 - (void)loadingIsDoneWithDataReceived:(NSData *)data
-//{
-//    dispatch_time_t refreshTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)SVERefreshTableTime * NSEC_PER_SEC);
-//    dispatch_after(refreshTime,dispatch_get_main_queue(), ^{
-//        self.friends = nil;
-//        [self.tableView reloadData];
-//        [self.model configureModelWithData:data];
-//        self.friends = self.model.vkFriends;
-//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            for (SVEFriendRepresentation *friend in self.friends)
-//            {
-//                if (!friend.photo_100_image)
-//                {
-//                    friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
-//                }
-//            }
-//        });
-//        [self.tableView performBatchUpdates:^{
-//            for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
-//            {
-//                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            [self.refreshControl endRefreshing];
-//        } completion:nil];
-//    });
-//}
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.model configureModelWithData:data];
