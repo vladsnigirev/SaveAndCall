@@ -9,11 +9,20 @@
 #import "SVEContactsModel.h"
 #import "SVEParseHelper.h"
 
+
 @implementation SVEContactsModel
+
+
+#pragma mark - Public
 
 - (void)configureModelWithContactsArray:(NSArray *)contactsArray
 {
-    self.contacts = [SVEParseHelper parseContactsArray:contactsArray];
+    if (!contactsArray)
+    {
+        self.contacts = nil;
+        return;
+    }
+        self.contacts = [SVEParseHelper parseContactsArray:contactsArray];
 }
 
 -(NSUInteger)countOfContacts

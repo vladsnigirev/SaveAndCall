@@ -10,6 +10,8 @@
 
 @implementation NSString (SVENumberEraser)
 
+#pragma mark - Public
+
 - (NSString *)sve_cutOffFirstDigit:(NSString *)number
 {
     if (number.length == 11)

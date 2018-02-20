@@ -10,16 +10,23 @@
 #import <UIKit/UIKit.h>
 #import "SVECoreDataFriendModel+CoreDataClass.h"
 
-@interface SVEFriendRepresentation () 
+
+@interface SVEFriendRepresentation ()
+
 
 @property (nonatomic, readwrite) NSString *firstNameString;
 @property (nonatomic, readwrite) NSString *lastNameString;
 @property (nonatomic, readwrite) NSURL *photo_100_Url;
 @property (nonatomic, readwrite) NSURL *photo_200_Url;
 
+
 @end
 
+
 @implementation SVEFriendRepresentation
+
+
+#pragma mark - Lifecycle
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
@@ -63,12 +70,16 @@
             _phoneNumberString = coreDataFriend.phoneNumber;
             _photo_100_Url = nil;
             _photo_200_Url = nil;
+            _photo_100_image = [UIImage imageNamed:@"user logo"];
         }
         return self;
     }
 }
 
-- (BOOL)isEqual:(SVEFriendRepresentation *)friend
+
+#pragma mark - Public
+
+- (BOOL)isEqualTo:(SVEFriendRepresentation *)friend
 {
     if ([self.firstNameString isEqualToString:friend.firstNameString]
         && [self.lastNameString isEqualToString:friend.lastNameString]
@@ -86,6 +97,9 @@
     }
     return NO;
 }
+
+
+#pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone
 {

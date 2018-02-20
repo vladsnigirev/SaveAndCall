@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface NSString (SVENumberEraser)
-// отрезаем 8 или 7 от номера
+// Функция "отрезает" 8 или 7 от номера, приведенного к строке, содержащей только цифры.
 - (NSString *)sve_cutOffFirstDigit:(NSString *)number;
 
 @end

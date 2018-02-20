@@ -7,8 +7,13 @@
 //
 
 #import "SVEContactsService.h"
+#import <Contacts/Contacts.h>
+
 
 @implementation SVEContactsService
+
+
+#pragma mark - Public
 
 - (void)getContacts
 {
@@ -30,11 +35,12 @@
                                              usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
             if (contact)
             {
-            [contactsArray addObject:contact];
+                [contactsArray addObject:contact];
             }
         }];
         [self.delegate gotContactsWithArray:[contactsArray copy]];
     }
 }
+
 
 @end

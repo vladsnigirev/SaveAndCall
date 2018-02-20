@@ -8,14 +8,15 @@
 
 #import "SVETabBarController.h"
 
-@interface SVETabBarController ()
-
-@end
 
 @implementation SVETabBarController
+
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
 
 @end

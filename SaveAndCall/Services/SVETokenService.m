@@ -9,13 +9,29 @@
 #import "SVETokenService.h"
 #import "SVEParseHelper.h"
 
+
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
 
+
+typedef NS_ENUM(NSUInteger,SVEUserAuthorization)
+{
+    SVEUserWithAuthorization,
+    SVEUserWithoutAuthorization
+};
+
+
 @interface SVETokenService ()
+
+
+@property (nonatomic, assign) NSUInteger currentState;
+
 
 @end
 
 @implementation SVETokenService
+
+
+#pragma mark - Lifecycle
 
 - (instancetype)init
 {
@@ -26,9 +42,13 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
                                               selector:@selector(fillUserDefaults:)
                                               name:SVEAppGotInformationAfterAutorization
                                               object:nil];
+        _currentState = SVEUserWithoutAuthorization;
     }
     return self;
 }
+
+
+#pragma mark - Private
 
 - (void)fillUserDefaults:(NSNotification *)notification
 {
@@ -45,7 +65,7 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
     [[NSUserDefaults standardUserDefaults] synchronize];
         
     NSString *expiresInString = [accessTokenDictionary objectForKey:@"expires_in"];
-    NSDate *interval = [NSDate dateWithTimeIntervalSinceNow:([expiresInString doubleValue] - 1)];
+    NSDate *interval = [NSDate dateWithTimeIntervalSinceNow:([expiresInString doubleValue])];
     [[NSUserDefaults standardUserDefaults] setObject:interval forKey:@"expires_in"];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -54,34 +74,41 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
         
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    self.currentState = SVEUserWithAuthorization;
     [self.router switchAuthorizationControllerToMain];
 }
+
+
+#pragma mark - Public
 
 - (BOOL)isLogged
 {
     NSDate *now = [NSDate date];
     NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:@"expires_in"];
-    if (([now compare:expiresIn] == NSOrderedDescending) || !(expiresIn))
+    if (([now compare:expiresIn] == NSOrderedDescending))
     {
         [self clearUserDefaults];
         return NO;
     }
-    else
+    else if (self.currentState == SVEUserWithoutAuthorization)
+    {
         return YES;
+    }
+    return YES;
 }
 
 - (void)clearUserDefaults
 {
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"user_id"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"expires_in"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"expires_in"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogged"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isLogged"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.router switchMainControllerToAuthorization];
 }
@@ -90,7 +117,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
 {
     [self.router switchAuthorizationControllerToMain];
 }
-
 
 
 @end

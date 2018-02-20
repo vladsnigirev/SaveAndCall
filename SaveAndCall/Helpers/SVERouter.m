@@ -12,8 +12,10 @@
 #import "SVEModelCleanerProtocol.h"
 #import "AppDelegate.h"
 
+
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
+
 
 //Перечисление - состояние класса, зависит от того авторизован ли пользователь с помощью ВК.
 typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
@@ -22,13 +24,19 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     SVENotAuthorizedState
 };
 
+
 @interface SVERouter () <SVEModelCleanerProtocol>
 
+
 @property (nonatomic, assign) NSUInteger routerState;
+
 
 @end
 
 @implementation SVERouter
+
+
+#pragma mark - Lifecycle
 
 - (instancetype)init
 {
@@ -50,6 +58,10 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     }
     return self;
 }
+
+
+#pragma mark - Public
+
 // Функция определения root контроллера. Если пользователь не авторизован, экран авторизации,
 // иначе главный экран.
 - (UIViewController *)defineViewController
@@ -71,14 +83,14 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     UIWindow *window = [app windows].firstObject;
     [UIView transitionWithView:window
                       duration:0.5
-                       options:UIViewAnimationOptionTransitionFlipFromBottom
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
                      animations:^{
         window.rootViewController = [self defineViewController];
     } completion:nil];
 }
 
 
-#pragma mark - SVERouterProtocol methods
+#pragma mark - SVERouterProtocol
 
 // Замена контроллеров.
 - (void)switchAuthorizationControllerToMain
@@ -100,9 +112,9 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 
 - (void)clearModels
 {
-    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    a.vkModel.vkFriends = nil;
-    a.contactsModel.contacts = nil;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.vkModel.vkFriends = nil;
+    appDelegate.contactsModel.contacts = nil;
 }
 
 

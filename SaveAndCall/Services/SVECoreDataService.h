@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class SVEFriendModel;
+
 @interface SVECoreDataService : NSObject
 
--(instancetype)init;
+
 - (void)saveFriends;
-- (NSArray *)friensFromCoreData;
+- (NSArray *)friendsFromCoreData;
+
 
 @end

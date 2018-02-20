@@ -8,15 +8,17 @@
 
 #import "SVEContactsNavigationController.h"
 
-@interface SVEContactsNavigationController ()
-
-@end
 
 @implementation SVEContactsNavigationController
+
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarItem.title = @"Contacts";
+    self.tabBarItem.image = [UIImage imageNamed:@"contacts"];
 }
+
 
 @end

@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SVEContactsModel : NSObject
+
 
 @property (nonatomic, copy) NSArray *contacts;
 
 - (void)configureModelWithContactsArray:(NSArray *)contactsArray;
-
 - (NSUInteger)countOfContacts;
+
 
 @end

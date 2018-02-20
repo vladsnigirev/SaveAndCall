@@ -6,7 +6,6 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 //Протоколо очистки моделей. Используется При сменах экрана.
 @protocol SVEModelCleanerProtocol <NSObject>
 

@@ -11,6 +11,7 @@
 
 @implementation SVECoreDataFriendModel (CoreDataProperties)
 
+
 + (NSFetchRequest<SVECoreDataFriendModel *> *)fetchRequest {
 	return [[NSFetchRequest alloc] initWithEntityName:@"SVECoreDataFriendModel"];
 }
@@ -18,5 +19,6 @@
 @dynamic firstName;
 @dynamic lastName;
 @dynamic phoneNumber;
+
 
 @end

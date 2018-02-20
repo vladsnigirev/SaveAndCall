@@ -10,12 +10,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SVECoreDataFriendModel : NSManagedObject
 
+
 @end
 
 NS_ASSUME_NONNULL_END
+
 
 #import "SVECoreDataFriendModel+CoreDataProperties.h"

@@ -10,7 +10,11 @@
 #import "Masonry.h"
 #import "SVEContactRepresentation.h"
 
+
 @implementation SVEChangePhotoView
+
+
+#pragma mark - Lifecycle
 
 - (instancetype)initWithFrame:(CGRect)frame contact:(SVEContactRepresentation *)contact
 {
@@ -43,10 +47,13 @@
     return self;
 }
 
+
+#pragma mark - UIView
+
 - (void)updateConstraints
 {
     [self.headLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(15);
+        make.height.mas_equalTo(20);
         make.width.equalTo(self);
         make.left.equalTo(self);
         make.right.equalTo(self);
@@ -56,13 +63,10 @@
         make.height.mas_lessThanOrEqualTo(100);
         make.width.mas_lessThanOrEqualTo(100);
         make.top.lessThanOrEqualTo(self.headLabel.mas_bottom).with.offset(50);
-       // make.left.lessThanOrEqualTo(self).with.offset(10);
-       // make.right.lessThanOrEqualTo(self).with.offset(-10);
         make.centerX.equalTo(self.mas_centerX);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(20);
-        //make.left.equalTo(self.contactNewPhotoImageView.mas_right).with.offset(15);
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.contactNewPhotoImageView.mas_bottom).with.offset(10);
         
@@ -70,7 +74,6 @@
     [self.lastNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(20);
         make.centerX.equalTo(self.mas_centerX);
-        //make.left.equalTo(self.nameLabel.mas_left);
         make.top.equalTo(self.nameLabel.mas_bottom).with.offset(15);
     }];
     [self.phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,5 +83,6 @@
     }];
     [super updateConstraints];
 }
+
 
 @end

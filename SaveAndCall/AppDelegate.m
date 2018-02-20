@@ -9,13 +9,18 @@
 #import "AppDelegate.h"
 #import "SVERouter.h"
 
+
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
+
 
 @interface AppDelegate ()
 
+
 @property (nonatomic, strong) SVERouter *router;
 
+
 @end
+
 
 @implementation AppDelegate
 
@@ -67,6 +72,8 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
     }
 }
 
+#pragma mark - UIApplicationDelegate
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
     NSDictionary *dictionaryForUserInfo = [NSDictionary dictionaryWithObject:url forKey:@"Url"];
@@ -75,5 +82,6 @@ static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInform
                                                       userInfo:dictionaryForUserInfo];
     return YES;
 }
+
 
 @end

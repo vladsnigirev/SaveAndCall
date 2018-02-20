@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class CNContact, SVEFriendRepresentation;
 @interface SVEContactRepresentation : NSObject <NSCopying>
+
 
 @property (nonatomic, readonly) NSString *firstNameString;
 @property (nonatomic, readonly) NSString *lastNameString;
@@ -18,5 +20,6 @@
 
 - (instancetype)initWithContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(SVEFriendRepresentation *)friend;
+
 
 @end

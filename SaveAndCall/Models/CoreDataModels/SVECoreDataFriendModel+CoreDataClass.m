@@ -9,6 +9,8 @@
 
 #import "SVECoreDataFriendModel+CoreDataClass.h"
 
+
 @implementation SVECoreDataFriendModel
+
 
 @end

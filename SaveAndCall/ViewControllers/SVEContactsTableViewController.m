@@ -12,25 +12,32 @@
 #import "SVEContactsProtocol.h"
 #import "SVEContactRepresentation.h"
 #import "SVEChangePhotoView.h"
-#import "SVEChangeContactPhotoController.h"
 #import "SVEContactsModel.h"
 #import "AppDelegate.h"
 #import "SVESynchronizationService.h"
 
+
 static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *reuseIdentifier = @"SVEContactTableViewCell";
-static CGFloat SVERefreshContactsTime = 1;
+static CGFloat SVERefreshContactsTime = 0.9f;
+
 
 @interface SVEContactsTableViewController () <SVEContactsProtocol>
+
 
 @property (nonatomic, strong) UIBarButtonItem *sychronizeButton;
 @property (nonatomic, strong) SVEContactsService *contactService;
 @property (nonatomic, strong) SVEContactsModel *model;
 @property (nonatomic, strong) SVESynchronizationService *synchronizedService;
+@property (nonatomic, strong) NSArray *synchronizedArray;
+
 
 @end
 
 @implementation SVEContactsTableViewController
+
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,9 +46,11 @@ static CGFloat SVERefreshContactsTime = 1;
     [self setupContactService];
     AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.model = a.contactsModel;
-//    self.synchronizedService = [[SVESynchronizationService alloc] init];
     [self.contactService getContacts];
 }
+
+
+#pragma mark - Private
 
 - (void)setupTableView
 {
@@ -61,6 +70,9 @@ static CGFloat SVERefreshContactsTime = 1;
     self.contactService.delegate = self;
 }
 
+
+#pragma mark - Buttons' Actions
+
 - (void)synchronize
 {
     self.synchronizedService = [[SVESynchronizationService alloc] init];
@@ -77,7 +89,7 @@ static CGFloat SVERefreshContactsTime = 1;
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -105,24 +117,21 @@ static CGFloat SVERefreshContactsTime = 1;
 }
 
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SVEChangeContactPhotoController *vc = [[SVEChangeContactPhotoController alloc] init];
-    vc.contactsArray = self.model.contacts;
-    vc.index = indexPath.row;
-    [self.navigationController pushViewController:vc animated:YES];
+    return 140.f;
 }
 
 
 #pragma mark - SVEContactsProtocol
+
 //Приходит массив контактов - SVEParseHelper разбирает его и присваевает contactsArray равным массиву моделей
 - (void)gotContactsWithArray:(NSArray *)contactsArray
 {
     [self.model configureModelWithContactsArray:contactsArray];
 }
-
 
 
 @end

@@ -6,8 +6,7 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-//Протокол для смены статуса авторизованности в вк
+//Протокол для для прерывания работы через вк, а также позволяет попасть в основное приложение без авторизации
 @protocol SVELogoutProtocol <NSObject>
 
 @optional

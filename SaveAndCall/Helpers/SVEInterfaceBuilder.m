@@ -14,8 +14,12 @@
 #import "SVEContactsTableViewController.h"
 #import "SVETabBarController.h"
 
-//вместо assembly
+
+//Класс для сборки интерфейся в зависимости от ситуации.
 @implementation SVEInterfaceBuilder
+
+
+#pragma mark - Public
 
 + (UIViewController *)buildMainController
 {
@@ -39,5 +43,6 @@
     SVEVkAuthorizationController *sveVkAuthorizationController = [[SVEVkAuthorizationController alloc] init];
     return sveVkAuthorizationController;
 }
+
 
 @end

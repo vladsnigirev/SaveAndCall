@@ -9,13 +9,19 @@
 #import "SVENetworkService.h"
 #import <UIKit/UIKit.h>
 
+
 @interface SVENetworkService ()
+
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 
 @end
 
+
 @implementation SVENetworkService
+
+
+#pragma mark - Public
 
 - (void) getFriends
 {
@@ -53,5 +59,6 @@
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
     return image;
 }
+
 
 @end

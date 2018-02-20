@@ -11,6 +11,7 @@
 @class UIImage, SVECoreDataFriendModel, SVEContactRepresentation;
 @interface SVEFriendRepresentation : NSObject <NSCopying>
 
+
 @property (nonatomic, readonly) NSString *firstNameString;
 @property (nonatomic, readonly) NSString *lastNameString;
 @property (nonatomic, readonly) NSURL *photo_100_Url;
@@ -20,6 +21,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithCoreData:(SVECoreDataFriendModel *)coreDataFriend;
-- (BOOL)isEqual:(SVEFriendRepresentation *)friend;
+- (BOOL)isEqualTo:(SVEFriendRepresentation *)friend;
+
 
 @end

@@ -6,30 +6,34 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-#import "SVEVkModel.h"
-#import <UIKit/UIKit.h>
 #import "SVEParseHelper.h"
 #import "SVEFriendRepresentation.h"
 #import "SVECoreDataService.h"
+#import "SVEVkModel.h"
+
 
 @interface SVEVkModel () 
 
+
 @property (nonatomic, strong) SVECoreDataService *coreDataService;
+
 
 @end
 
 @implementation SVEVkModel
 
+
+#pragma mark - Public
+
 - (void)configureModelWithData:(NSData *)data;
 {
-    self.coreDataService = [[SVECoreDataService alloc] init];
+    self.coreDataService = [SVECoreDataService new];
     self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
     if (!self.vkFriends)
     {
-        self.vkFriends = [self.coreDataService friensFromCoreData];
+        self.vkFriends = [self.coreDataService friendsFromCoreData];
         return;
     }
-    //self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
     [self.coreDataService saveFriends];
 }
 

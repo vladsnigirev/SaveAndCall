@@ -11,46 +11,53 @@
 #import "SVEFriendRepresentation.h"
 #import "SVECoreDataFriendModel+CoreDataClass.h"
 
+
 @interface SVECoreDataService ()
 
+
 @property (nonatomic, strong) NSManagedObjectContext *context;
-//@property (nonatomic, strong) NSArray *friends;
+
 
 @end
 
+
 @implementation SVECoreDataService
 
--(instancetype)init
+
+#pragma mark - Custom Accessors
+
+- (NSManagedObjectContext *)context
 {
-    self = [super init];
-    if (self)
+    if (_context)
     {
-        UIApplication *application = [UIApplication sharedApplication];
-        NSPersistentContainer* container = ((AppDelegate *)(application.delegate)).persistentContainer;
-        _context = container.viewContext;
+        return _context;
     }
-    return self;
+    NSManagedObjectContext *context;
+    UIApplication *application = [UIApplication sharedApplication];
+    NSPersistentContainer* container = ((AppDelegate *)(application.delegate)).persistentContainer;
+    context = container.viewContext;
+    return context;
 }
+
+
+#pragma mark - Public
 
 - (void)saveFriends;
 {
     [self clearCoreData];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-   // self.friends = appDelegate.vkModel.vkFriends;
     for (SVEFriendRepresentation *friend in appDelegate.vkModel.vkFriends)
     {
-        @autoreleasepool
-        {
-       SVECoreDataFriendModel *coreDataFriend = [NSEntityDescription insertNewObjectForEntityForName:@"SVECoreDataFriendModel" inManagedObjectContext:self.context];
-        coreDataFriend.firstName = friend.firstNameString;
-        coreDataFriend.lastName = friend.lastNameString;
-        coreDataFriend.phoneNumber = friend.phoneNumberString;
-        [coreDataFriend.managedObjectContext save:nil];
-        }
+                SVECoreDataFriendModel *coreDataFriend = [NSEntityDescription insertNewObjectForEntityForName:@"SVECoreDataFriendModel"
+                                                                                       inManagedObjectContext:self.context];
+                coreDataFriend.firstName = friend.firstNameString;
+                coreDataFriend.lastName = friend.lastNameString;
+                coreDataFriend.phoneNumber = friend.phoneNumberString;
+                [self.context save:nil];
     }
 }
 
-- (NSArray *)friensFromCoreData
+- (NSArray *)friendsFromCoreData
 {
     NSArray *result = [self.context executeFetchRequest:[SVECoreDataFriendModel fetchRequest] error:nil];
     NSMutableArray *friendArray = [NSMutableArray array];
@@ -61,6 +68,9 @@
     }
     return [friendArray copy];
 }
+
+
+#pragma mark - Private
 
 - (void)clearCoreData
 {

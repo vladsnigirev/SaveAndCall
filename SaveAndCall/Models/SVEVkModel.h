@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SVEVkModel : NSObject
+
 
 @property (nonatomic, copy) NSArray *vkFriends;
 
 - (void)configureModelWithData:(NSData *)data;
-
 - (NSUInteger)countOfVkFriends;
+
 
 @end

@@ -14,11 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SVECoreDataFriendModel (CoreDataProperties)
 
+
 + (NSFetchRequest<SVECoreDataFriendModel *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *firstName;
 @property (nullable, nonatomic, copy) NSString *lastName;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
+
 
 @end
 

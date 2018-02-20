@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SVEContactsProtocol.h"
 
+
 @interface SVEContactsService : NSObject
+
 
 @property (nonatomic, weak) id <SVEContactsProtocol> delegate;
 
 -(void)getContacts;
+
 
 @end

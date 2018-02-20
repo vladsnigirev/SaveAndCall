@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class SVEVkAuthorizationController;
 @interface SVEVkAuthorizationService : NSObject
-//мбпротокол
+
+
 @property (nonatomic, weak) SVEVkAuthorizationController *SVEVkAuthorizationController;
 
+//Функция авторизации пользователя
 - (void)authorize;
+
 
 @end

@@ -8,18 +8,17 @@
 
 #import "SVEVkFriendsNavigationController.h"
 
-@interface SVEVkFriendsNavigationController ()
-
-@end
 
 @implementation SVEVkFriendsNavigationController
 
+
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tabBarItem.title = @"Vk";
+    self.tabBarItem.title = @"VK";
+    self.tabBarItem.image = [UIImage imageNamed:@"vk"];
 }
-
-
 
 
 @end

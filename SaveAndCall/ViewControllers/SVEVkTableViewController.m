@@ -12,29 +12,36 @@
 #import "SVENetworkService.h"
 #import "SVEFriendRepresentation.h"
 #import "AppDelegate.h"
-#import "SVECoreDataService.h"
 #import "SVEVkModel.h"
 
+
 static NSString *reuseIdentifier = @"VkTableCell";
-static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
+static CGFloat SVERefreshTableTime = 1.f;
+
 
 @interface SVEVkTableViewController () <SVENetworkServiceProtocol>
 
+
 @property (nonatomic, strong) UIBarButtonItem *logoutButton;
 @property (nonatomic, strong) SVENetworkService *networkService;
-@property (nonatomic, strong) SVECoreDataService *coreDataService;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) SVETokenService *tokenService;
 @property (nonatomic, strong) SVEVkModel *model;
 @property (nonatomic, copy) NSArray *friends;
 
+
 @end
 
 @implementation SVEVkTableViewController
+
 @dynamic refreshControl;
+
+
+#pragma mark - Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.tokenService isLogged];
     [super viewWillAppear:animated];
 }
 
@@ -43,7 +50,6 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     [self setupBarButtons];
     [self setupTableView];
     [self setupNetworkService];
-    self.coreDataService = [[SVECoreDataService alloc] init];
     [self setupRefreshControl];
     [self.refreshControl beginRefreshing];
     AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -53,6 +59,9 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     self.tokenService = a.tokenService;
     [self.networkService getFriends];
 }
+
+
+#pragma mark - Private
 
 - (void)setupRefreshControl
 {
@@ -69,21 +78,15 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 
 - (void)setupBarButtons
 {
-    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logout)];
     [self.navigationItem setLeftBarButtonItems:@[self.logoutButton]];
 }
 
 - (void)refreshFriends
 {
-    //self.model.vkFriends = nil;
-    self.friends = nil;
-    [self.tableView reloadData];
+    [self.tokenService isLogged];
+    
     [self.networkService getFriends];
-}
-
-- (void)logout
-{
-    [self.tokenService clearUserDefaults];
 }
 
 -(void) setupNetworkService
@@ -93,14 +96,28 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Buttons' Actions
+
+- (void)logout
+{
+    [self.tokenService clearUserDefaults];
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 140.f;
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.friends.count;
-    //return [self.model countOfVkFriends];
 }
-//
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SVEVkTableCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -109,7 +126,6 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
     {
         cell = [[SVEVkTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-//    SVEFriendRepresentation *friend = self.model.vkFriends[indexPath.row];
     SVEFriendRepresentation *friend = self.friends[indexPath.row];
     cell = [cell configureCell:cell withFriend:friend];
     [cell updateConstraints];
@@ -117,28 +133,67 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 }
 
 
-#pragma mark - Network Service Protocol
+#pragma mark - NetworkServiceProtocol
 
 - (void)loadingIsDoneWithDataReceived:(NSData *)data
+//{
+//    dispatch_time_t refreshTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)SVERefreshTableTime * NSEC_PER_SEC);
+//    dispatch_after(refreshTime,dispatch_get_main_queue(), ^{
+//        self.friends = nil;
+//        [self.tableView reloadData];
+//        [self.model configureModelWithData:data];
+//        self.friends = self.model.vkFriends;
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            for (SVEFriendRepresentation *friend in self.friends)
+//            {
+//                if (!friend.photo_100_image)
+//                {
+//                    friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
+//                }
+//            }
+//        });
+//        [self.tableView performBatchUpdates:^{
+//            for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
+//            {
+//                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
+//            [self.refreshControl endRefreshing];
+//        } completion:nil];
+//    });
+//}
 {
-    [self.model configureModelWithData:data];
     dispatch_async(dispatch_get_main_queue(), ^{
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.model configureModelWithData:data];
+        dispatch_time_t refreshTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)SVERefreshTableTime * NSEC_PER_SEC);
+        dispatch_after(refreshTime,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_group_t dispatchGroup = dispatch_group_create();
             for (SVEFriendRepresentation *friend in self.model.vkFriends)
             {
-                friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
+                dispatch_group_enter(dispatchGroup);
+                if (!friend.photo_100_image)
+                {
+                    friend.photo_100_image = [self.networkService downloadImageByURL:friend.photo_100_Url];
+                }
+                dispatch_group_leave(dispatchGroup);
             }
+            dispatch_group_wait(dispatchGroup, 0);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.friends = nil;
+                [self.tableView reloadData];
+                self.friends = self.model.vkFriends;
+                [self.tableView performBatchUpdates:^{
+                    for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
+                    {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    [self.refreshControl endRefreshing];
+                } completion:nil];
+            });
         });
-        self.friends = self.model.vkFriends;
-        [self.tableView performBatchUpdates:^{
-            for (NSUInteger i = 0; i < [self.model countOfVkFriends]; i++)
-            {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            [self.refreshControl endRefreshing];
-        } completion:nil];
     });
 }
+
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 @class SVEContactRepresentation;
 @interface SVEContactsTableCell : UITableViewCell
+
 
 @property (nonatomic, strong) UILabel *firstNameLabel;
 @property (nonatomic, strong) UILabel *lastNameLabel;

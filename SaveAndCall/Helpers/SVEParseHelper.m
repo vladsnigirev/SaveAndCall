@@ -11,7 +11,12 @@
 #import "SVEContactRepresentation.h"
 #import <Contacts/Contacts.h>
 
+
 @implementation SVEParseHelper
+
+
+#pragma mark - Class Methods
+
 //Парсит массив моделей, полученных с помощью Contacts Framework и возвращает массив локальных моделей(SVEContactModel)
 //@param contactsArray - массив моделей из Contacts Framework
 + (NSArray *)parseContactsArray:(NSArray *)contactsArray
@@ -84,5 +89,6 @@
     }
     return [dictionaryWithToken copy];
 }
+
 
 @end
