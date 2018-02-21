@@ -6,7 +6,7 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-//Протокол, для обработки полученных данных из сети
+/*Протокол, для обработки полученных данных из сети*/
 @protocol SVENetworkServiceProtocol <NSObject>
 
 

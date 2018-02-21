@@ -37,7 +37,6 @@
     [friendsRequest  setURL:[NSURL URLWithString:urlString]];
     [friendsRequest setHTTPMethod:@"GET"];
     [friendsRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-   // [friendsRequest setTimeoutInterval:10];
     
     NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:
                                          ^(NSData * _Nullable data,

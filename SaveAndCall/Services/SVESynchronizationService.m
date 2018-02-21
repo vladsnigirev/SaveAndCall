@@ -33,7 +33,7 @@
     self = [super init];
     if (self)
     {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         _friendsArray = [[NSArray alloc] initWithArray:appDelegate.vkModel.vkFriends copyItems:YES];
         _contactsArray = [[NSArray alloc] initWithArray:appDelegate.contactsModel.contacts copyItems:YES];
     }
@@ -67,7 +67,7 @@
 
 #pragma mark - Private
 
-//Возвращает массив друзей из вк с телефонами. Приводит телефоны к 10 значному виду, т.е. без 7,8.
+/*Возвращает массив друзей из вк с телефонами. Приводит телефоны к 10 значному виду, т.е. без 7,8.*/
 - (NSArray *)findfriendsWithPhones
 {
     if (!self.friendsArray)
@@ -94,8 +94,9 @@
     return [temporaryArray copy];
 }
 
-//Разбирает массив контактов, получая оттуда все телефоны, и возвращает массив телефонов.
-//Приводит телефоны к 10 значному виду, т.е. без 7,8.
+/* Разбирает массив контактов, получая оттуда все телефоны, и возвращает массив телефонов.
+ * Приводит телефоны к 10 значному виду, т.е. без 7,8.
+ */
 - (NSArray *)customizeContactsPhones
 {
     NSMutableArray *tempArray = [NSMutableArray array];
@@ -118,7 +119,7 @@
     return [tempArray copy];
 }
 
-//Синхронизирует массив телефонов с друзьями из вк. Возвращает массив друзей, которым принадлежат телефоны.
+/*Синхронизирует массив телефонов с друзьями из вк. Возвращает массив друзей, которым принадлежат телефоны.*/
 - (NSArray *)updateModel:(NSArray *)additionalFriends
 {
     NSMutableArray *mutableArray = [NSMutableArray array];
@@ -135,11 +136,12 @@
     return [mutableArray copy];
 }
 
-//Преобразует массив друзей в массив контактов. Обновляет модель контактов.
-//@param NSArray - массив друзей, которых нужно перенести в контакты.
+/* Преобразует массив друзей в массив контактов. Обновляет модель контактов.
+ * @param NSArray - массив друзей, которых нужно перенести в контакты.
+ */
 - (void)friendsToContacts:(NSArray *)array
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSArray *marray = appDelegate.vkModel.vkFriends;
     NSMutableArray *changedContacts = [appDelegate.contactsModel.contacts mutableCopy];
     for (SVEFriendRepresentation *modelFriend in array)

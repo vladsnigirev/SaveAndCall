@@ -16,7 +16,6 @@
 
 @property (nonatomic, weak) id<SVENetworkServiceProtocol> delegate;
 
-//Получение списка друзей из Вконтакте
 - (void)getFriends;
 - (UIImage *)downloadImageByURL:(NSURL *)url;
 

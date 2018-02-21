@@ -52,7 +52,7 @@ static CGFloat SVERefreshTableTime = 1.f;
     [self setupNetworkService];
     [self setupRefreshControl];
     [self.refreshControl beginRefreshing];
-    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *a = (AppDelegate *)[UIApplication sharedApplication].delegate;
     a.tokenService.delegate = self;
     self.model = a.vkModel;
     self.friends = self.model.vkFriends;

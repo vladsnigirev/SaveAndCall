@@ -15,7 +15,6 @@
 
 @property (nonatomic, weak) SVEVkAuthorizationController *SVEVkAuthorizationController;
 
-//Функция авторизации пользователя
 - (void)authorize;
 
 

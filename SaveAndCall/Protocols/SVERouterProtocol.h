@@ -7,7 +7,7 @@
 //
 
 
-//Протокол для смены экранов
+/*Протокол для смены экранов*/
 @protocol SVERouterProtocol <NSObject>
 
 - (void)switchAuthorizationControllerToMain;

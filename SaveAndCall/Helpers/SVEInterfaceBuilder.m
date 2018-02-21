@@ -15,7 +15,7 @@
 #import "SVETabBarController.h"
 
 
-//Класс для сборки интерфейся в зависимости от ситуации.
+/*Класс для сборки интерфейсa в зависимости от ситуации.*/
 @implementation SVEInterfaceBuilder
 
 

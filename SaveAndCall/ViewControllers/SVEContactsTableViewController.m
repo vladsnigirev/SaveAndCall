@@ -11,7 +11,6 @@
 #import "SVEContactsTableCell.h"
 #import "SVEContactsProtocol.h"
 #import "SVEContactRepresentation.h"
-#import "SVEChangePhotoView.h"
 #import "SVEContactsModel.h"
 #import "AppDelegate.h"
 #import "SVESynchronizationService.h"
@@ -44,7 +43,7 @@ static CGFloat SVERefreshContactsTime = 0.9f;
     [self setupBarButtonItems];
     [self setupTableView];
     [self setupContactService];
-    AppDelegate *a = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *a = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.model = a.contactsModel;
     [self.contactService getContacts];
 }
@@ -127,7 +126,7 @@ static CGFloat SVERefreshContactsTime = 0.9f;
 
 #pragma mark - SVEContactsProtocol
 
-//Приходит массив контактов - SVEParseHelper разбирает его и присваевает contactsArray равным массиву моделей
+/*Приходит массив контактов - SVEParseHelper разбирает его и присваевает contactsArray равным массиву моделей*/
 - (void)gotContactsWithArray:(NSArray *)contactsArray
 {
     [self.model configureModelWithContactsArray:contactsArray];

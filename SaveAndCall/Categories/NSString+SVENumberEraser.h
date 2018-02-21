@@ -10,7 +10,7 @@
 
 
 @interface NSString (SVENumberEraser)
-// Функция "отрезает" 8 или 7 от номера, приведенного к строке, содержащей только цифры.
+/* Функция "отрезает" 8 или 7 от номера, приведенного к строке.*/
 - (NSString *)sve_cutOffFirstDigit:(NSString *)number;
 
 @end

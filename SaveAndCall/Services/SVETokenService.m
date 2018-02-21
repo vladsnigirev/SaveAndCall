@@ -11,6 +11,10 @@
 
 
 static NSString *const SVEAppGotInformationAfterAutorization = @"SVEAppGotInformationAfterAutorization";
+static NSString *SVEUserIdKey = @"user_id";
+static NSString *SVEExpiresInKey = @"expires_in";
+static NSString *SVEAccessTokenKey = @"access_token";
+static NSString *SVEIsLoggedKey = @"isLogged";
 
 
 typedef NS_ENUM(NSUInteger,SVEUserAuthorization)
@@ -61,18 +65,18 @@ typedef NS_ENUM(NSUInteger,SVEUserAuthorization)
         return;
     }
         
-    [[NSUserDefaults standardUserDefaults] setObject:[accessTokenDictionary objectForKey:@"user_id"] forKey:@"user_id"];
+    [[NSUserDefaults standardUserDefaults] setObject:[accessTokenDictionary objectForKey:SVEUserIdKey] forKey:SVEUserIdKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
-    NSString *expiresInString = [accessTokenDictionary objectForKey:@"expires_in"];
+    NSString *expiresInString = [accessTokenDictionary objectForKey:SVEExpiresInKey];
     NSDate *interval = [NSDate dateWithTimeIntervalSinceNow:([expiresInString doubleValue])];
-    [[NSUserDefaults standardUserDefaults] setObject:interval forKey:@"expires_in"];
+    [[NSUserDefaults standardUserDefaults] setObject:interval forKey:SVEExpiresInKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
-    [[NSUserDefaults standardUserDefaults] setObject:[accessTokenDictionary objectForKey:@"access_token"] forKey:@"access_token"];
+    [[NSUserDefaults standardUserDefaults] setObject:[accessTokenDictionary objectForKey:SVEAccessTokenKey] forKey:SVEAccessTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SVEIsLoggedKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.currentState = SVEUserWithAuthorization;
     [self.router switchAuthorizationControllerToMain];
@@ -84,7 +88,7 @@ typedef NS_ENUM(NSUInteger,SVEUserAuthorization)
 - (BOOL)isLogged
 {
     NSDate *now = [NSDate date];
-    NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:@"expires_in"];
+    NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:SVEExpiresInKey];
     if (([now compare:expiresIn] == NSOrderedDescending))
     {
         [self clearUserDefaults];
@@ -99,16 +103,16 @@ typedef NS_ENUM(NSUInteger,SVEUserAuthorization)
 
 - (void)clearUserDefaults
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SVEUserIdKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"expires_in"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SVEExpiresInKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SVEAccessTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isLogged"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SVEIsLoggedKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.router switchMainControllerToAuthorization];
 }

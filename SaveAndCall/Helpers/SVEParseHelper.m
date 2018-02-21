@@ -17,8 +17,9 @@
 
 #pragma mark - Class Methods
 
-//Парсит массив моделей, полученных с помощью Contacts Framework и возвращает массив локальных моделей(SVEContactModel)
-//@param contactsArray - массив моделей из Contacts Framework
+/*Парсит массив моделей, полученных с помощью Contacts Framework и возвращает массив локальных моделей(SVEContactModel)
+ * @param contactsArray - массив моделей из Contacts Framework
+ */
 + (NSArray *)parseContactsArray:(NSArray *)contactsArray
 {
     NSMutableArray *contactModelsArray = [NSMutableArray array];
@@ -36,8 +37,9 @@
     return [contactModelsArray copy];
 }
 
-//Парсит JSON, полученный с помощью запроса к vk API в массив моделей (SVEVkFriendModel)
-//@param data - json, полученный из запроса
+/* Парсит JSON, полученный с помощью запроса к vk API в массив моделей (SVEVkFriendModel)
+ * @param data - json, полученный из запроса
+ */
 + (NSArray *)parseVkFriendsFromData:(NSData *)data
 {
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
@@ -61,9 +63,10 @@
     return [friends copy];
 }
 
-//Разбирает url содержащий токен, идентификатор и время "жизни" токена. Возвращает словарь с соответствующими ключами
-// При возврате ошибки возвращает 0
-//@param url - ответный url на запрос
+/*Разбирает url содержащий токен, идентификатор и время "жизни" токена. Возвращает словарь с соответствующими ключами
+ * При возврате ошибки возвращает 0
+ * @param url - ответный url на запрос
+ */
 + (NSDictionary *)parseAuthorizationUrl:(NSURL *)url
 {
     NSMutableDictionary *dictionaryWithToken = [NSMutableDictionary dictionary];

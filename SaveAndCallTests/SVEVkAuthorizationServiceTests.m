@@ -79,21 +79,5 @@
 
 }
 
-//- (void) authorize
-//{
-//    if ([self vkAppExists])
-//    {
-//        UIApplication *application = [UIApplication sharedApplication];
-//        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly: @NO};
-//        NSURL *url = [NSURL URLWithString:SVEVkAuthorizationStringViaVkApp];
-//        [application openURL:url options:options completionHandler:nil];
-//    }
-//    else
-//    {
-//        NSURL *url = [NSURL URLWithString:SVEVkAuthorizationStringViaSafari];
-//        SFSafariViewController *safariController = [[SFSafariViewController alloc] initWithURL:url];
-//        [self.SVEVkAuthorizationController presentViewController:safariController animated:YES completion:nil];
-//    }
-//}
 @end
 

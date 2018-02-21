@@ -20,7 +20,6 @@ static NSString *const SVEVkAuthorizationStringViaSafari = @"https://oauth.vk.co
 
 #pragma mark - Private
 
-//Проверака наличия приложения вк на устройстве
 - (BOOL) vkAppExists
 {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:SVEVkAuthorizationStringViaVkApp]];
@@ -29,8 +28,9 @@ static NSString *const SVEVkAuthorizationStringViaSafari = @"https://oauth.vk.co
 
 #pragma mark - Public
 
-//Функция авторизации пользователя. Проверяет доступность приложения ВК на устройстве и авторизовывает пользователя.
-//При отсутствии доступа к приложению авторизация через Safari.
+/*Функция авторизации пользователя. Проверяет доступность приложения ВК на устройстве и авторизовывает пользователя.
+ * При отсутствии доступа к приложению авторизация через Safari.
+ */
 - (void) authorize
 {
     if ([self vkAppExists])

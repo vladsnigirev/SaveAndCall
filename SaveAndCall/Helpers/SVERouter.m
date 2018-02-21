@@ -17,7 +17,7 @@ static NSString *const SVELogoutFromVk = @"SVELogoutFromVk";
 static NSString *const SVEContinueWithoutLogIn = @"SVEContinueWithoutLogIn";
 
 
-//Перечисление - состояние класса, зависит от того авторизован ли пользователь с помощью ВК.
+/*Перечисление - состояние класса, зависит от того авторизован ли пользователь с помощью ВК.*/
 typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 {
     SVEAuthorizedState,
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     self = [super init];
     if (self)
     {
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogged"] boolValue])
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"])
         {
             _routerState = SVENotAuthorizedState;
         }
@@ -67,8 +67,9 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 
 #pragma mark - Public
 
-// Функция определения root контроллера. Если пользователь не авторизован, экран авторизации,
-// иначе главный экран.
+/* Функция определения root контроллера. Если пользователь не авторизован, экран авторизации,
+ * иначе главный экран.
+ */
 - (UIViewController *)defineViewController
 {
     if (self.routerState == SVENotAuthorizedState)
@@ -81,11 +82,10 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
     }
 }
 
-//Установка root контроллера
 - (void)setDefinedViewController
 {
     UIApplication *app = [UIApplication sharedApplication];
-    UIWindow *window = [app windows].firstObject;
+    UIWindow *window = app.windows.firstObject;
     [UIView transitionWithView:window
                       duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -97,14 +97,13 @@ typedef NS_ENUM(NSUInteger,SVECurrentRouterState)
 
 #pragma mark - SVERouterProtocol
 
-// Замена контроллеров.
 - (void)switchAuthorizationControllerToMain
 {
     self.routerState = SVEAuthorizedState;
     [self clearModels];
     [self setDefinedViewController];
 }
-// Замена контроллеров.
+
 - (void)switchMainControllerToAuthorization
 {
     self.routerState = SVENotAuthorizedState;

@@ -10,7 +10,7 @@
 #import "SVERouterProtocol.h"
 
 
-//Router отвечает за смену root controller
+/*Router отвечает за смену root controller*/
 @class UIViewController;
 @interface SVERouter : NSObject<SVERouterProtocol>
 

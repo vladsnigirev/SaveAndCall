@@ -54,11 +54,4 @@
     expect([self.model.contacts firstObject]).to.equal(@"2");
 }
 
-
-//- (void)configureModelWithContactsArray:(NSArray *)contactsArray
-//{
-//    self.contacts = [SVEParseHelper parseContactsArray:contactsArray];
-//}
-
-
 @end

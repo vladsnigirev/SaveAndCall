@@ -10,6 +10,7 @@
 
 
 @class SVEContactRepresentation;
+
 @interface SVEContactsTableCell : UITableViewCell
 
 

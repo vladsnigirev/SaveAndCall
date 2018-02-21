@@ -64,11 +64,11 @@
 
 #pragma mark - Public
 
-- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendRepresentation *)friend
+- (SVEVkTableCell *)configureCell:(SVEVkTableCell *)cell withFriend:(SVEFriendRepresentation *)friendRepresentation
 {
-    cell.firstNameLabel.text = friend.firstNameString;
-    cell.lastNameLabel.text = friend.lastNameString;
-    cell.profilePhotoImageView.image = friend.photo_100_image;
+    cell.firstNameLabel.text = friendRepresentation.firstNameString;
+    cell.lastNameLabel.text = friendRepresentation.lastNameString;
+    cell.profilePhotoImageView.image = friendRepresentation.photo_100_image;
     return cell;
 }
 

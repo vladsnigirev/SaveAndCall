@@ -6,7 +6,7 @@
 //  Copyright © 2018 Vlad Snigiryov. All rights reserved.
 //
 
-//Протокол для обработки полученных контактов
+/*Протокол для обработки полученных контактов*/
 @class CNContact;
 @protocol SVEContactsProtocol <NSObject>
 

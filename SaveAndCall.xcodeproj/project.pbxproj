@@ -46,7 +46,6 @@
 		4CF62C9C20232398001552D1 /* SVEContactsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9B20232398001552D1 /* SVEContactsService.m */; };
 		4CF62CA02023466C001552D1 /* SVEParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62C9F2023466C001552D1 /* SVEParseHelper.m */; };
 		4CF62CA32023480E001552D1 /* SVEContactRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62CA22023480E001552D1 /* SVEContactRepresentation.m */; };
-		4CF62CB120247F79001552D1 /* SVEChangePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */; };
 		4CFB52D82038077600CD518C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C4B9929201D1A4500245923 /* LaunchScreen.storyboard */; };
 		4CFB52DA20380C7900CD518C /* SVEParseHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB52D920380C7900CD518C /* SVEParseHelperTests.m */; };
 		4CFB52DC20382F4D00CD518C /* SVEFriendRepresentationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB52DB20382F4D00CD518C /* SVEFriendRepresentationTests.m */; };
@@ -138,8 +137,6 @@
 		4CF62C9F2023466C001552D1 /* SVEParseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEParseHelper.m; sourceTree = "<group>"; };
 		4CF62CA12023480E001552D1 /* SVEContactRepresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEContactRepresentation.h; sourceTree = "<group>"; };
 		4CF62CA22023480E001552D1 /* SVEContactRepresentation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEContactRepresentation.m; sourceTree = "<group>"; };
-		4CF62CAF20247F79001552D1 /* SVEChangePhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEChangePhotoView.h; sourceTree = "<group>"; };
-		4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEChangePhotoView.m; sourceTree = "<group>"; };
 		4CFB52D72035DF4E00CD518C /* SVEModelCleanerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVEModelCleanerProtocol.h; sourceTree = "<group>"; };
 		4CFB52D920380C7900CD518C /* SVEParseHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEParseHelperTests.m; sourceTree = "<group>"; };
 		4CFB52DB20382F4D00CD518C /* SVEFriendRepresentationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVEFriendRepresentationTests.m; sourceTree = "<group>"; };
@@ -205,7 +202,6 @@
 				4CF62C912020A59D001552D1 /* Models */,
 				4CF62C8D20209F86001552D1 /* Protocols */,
 				4C6E71D8201E599800DDBAEF /* Cells */,
-				4C6E71D4201E562100DDBAEF /* Views */,
 				4C6E71C3201DE35E00DDBAEF /* Services */,
 				4C4B9942201D1A9100245923 /* ViewControllers */,
 				4C7BF69F202CCD9400BF4924 /* Categories */,
@@ -276,15 +272,6 @@
 				4C7BF6CF2034A08900BF4924 /* SVESynchronizationService.m */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		4C6E71D4201E562100DDBAEF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4CF62CAF20247F79001552D1 /* SVEChangePhotoView.h */,
-				4CF62CB020247F79001552D1 /* SVEChangePhotoView.m */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		4C6E71D8201E599800DDBAEF /* Cells */ = {
@@ -594,7 +581,6 @@
 				4C7BF6C720333B5400BF4924 /* SVECoreDataFriendModel+CoreDataProperties.m in Sources */,
 				4C4B992E201D1A4500245923 /* main.m in Sources */,
 				4C6E71E4201F1A8000DDBAEF /* SVEVkTableViewController.m in Sources */,
-				4CF62CB120247F79001552D1 /* SVEChangePhotoView.m in Sources */,
 				4C6E71E7201F241D00DDBAEF /* SVEContactsNavigationController.m in Sources */,
 				4CF62C9620231A98001552D1 /* SVEVkTableCell.m in Sources */,
 				4CF62C8C20209008001552D1 /* SVENetworkService.m in Sources */,

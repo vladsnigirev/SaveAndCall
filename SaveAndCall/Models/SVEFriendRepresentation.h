@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class UIImage, SVECoreDataFriendModel, SVEContactRepresentation;
+
 @interface SVEFriendRepresentation : NSObject <NSCopying>
 
 

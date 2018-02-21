@@ -72,18 +72,5 @@
     expect([self.model vkFriends]).to.equal(nil);
 }
 
-
-//- (void)configureModelWithData:(NSData *)data;
-//{
-//    self.coreDataService = [SVECoreDataService new];
-//    self.vkFriends = [SVEParseHelper parseVkFriendsFromData:data];
-//    if (!self.vkFriends)
-//    {
-//        self.vkFriends = [self.coreDataService friendsFromCoreData];
-//        return;
-//    }
-//    [self.coreDataService saveFriends];
-//}
-
 @end
 

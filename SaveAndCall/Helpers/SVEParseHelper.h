@@ -12,7 +12,7 @@
 @class SVEFriendRepresentation,SVEContactRepresentation;
 
 
-//Класс для парсинга различных сущностей.
+/*Класс для парсинга различных сущностей.*/
 @interface SVEParseHelper : NSObject
 
 
