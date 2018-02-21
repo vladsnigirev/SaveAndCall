@@ -28,7 +28,6 @@
         _profilePhotoImageView = [[UIImageView alloc] init];
         _firstPhoneLabel = [[UILabel alloc] init];
         _firstPhoneLabel.numberOfLines = 0;
-       // _firstPhoneLabel.text = @"Tel. ";
         
         [self.contentView addSubview:_firstNameLabel];
         [self.contentView addSubview:_lastNameLabel];
@@ -67,14 +66,6 @@
     self.profilePhotoImageView.layer.cornerRadius = 50;
     self.profilePhotoImageView.clipsToBounds = YES;
     [super updateConstraints];
-}
-
-
-#pragma mark - UITableViewCell
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
 }
 
 

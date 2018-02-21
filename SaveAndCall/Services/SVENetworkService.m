@@ -31,13 +31,13 @@
         self.urlSession = session;
     }
     NSString *access_token = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    NSString *urlString =  [NSString stringWithFormat:@"https://api.vk.com/method/friends.get?order=name&access_token=%@&offset=0&fields=contacts%%2Cphoto_100%%2Cphoto_200_orig&name_case=nom",access_token];
+    NSString *urlString =  [NSString stringWithFormat:@"https://api.vk.com/method/friends.get?order=name&v=5.21&access_token=%@&offset=0&fields=contacts%%2Cphoto_100%%2Cphoto_200_orig&name_case=nom",access_token];
     
     NSMutableURLRequest *friendsRequest = [[NSMutableURLRequest alloc] init];
     [friendsRequest  setURL:[NSURL URLWithString:urlString]];
     [friendsRequest setHTTPMethod:@"GET"];
     [friendsRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [friendsRequest setTimeoutInterval:10];
+   // [friendsRequest setTimeoutInterval:10];
     
     NSURLSessionDataTask *requestTask = [self.urlSession dataTaskWithRequest:friendsRequest completionHandler:
                                          ^(NSData * _Nullable data,

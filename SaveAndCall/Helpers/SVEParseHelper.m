@@ -41,7 +41,7 @@
 + (NSArray *)parseVkFriendsFromData:(NSData *)data
 {
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    NSArray *friendsInfoArray = [JSONDictionary objectForKey:@"response"];
+    NSArray *friendsInfoArray = [[JSONDictionary objectForKey:@"response"] objectForKey:@"items"];
     if (!friendsInfoArray)
     {
         return nil;

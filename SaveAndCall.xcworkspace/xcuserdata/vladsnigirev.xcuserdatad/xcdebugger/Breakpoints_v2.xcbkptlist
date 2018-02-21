@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SaveAndCall/Models/SVEVkModel.m"
-            timestampString = "540813787.8671761"
+            filePath = "SaveAndCall/AppDelegate.m"
+            timestampString = "540909858.278757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-configureModelWithData:"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-application:openURL:options:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SaveAndCall/Helpers/SVEParseHelper.m"
+            timestampString = "540912242.216913"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "+parseAuthorizationUrl:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
